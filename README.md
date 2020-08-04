@@ -1,2 +1,3 @@
 # ms_sql_server
- Microsoft SQL Server Management Studio (SSMS)
+Tworzenie baz danych w Microsoft SQL Server Management Studio (SSMS),
+podczas kursu: https://www.udemy.com/course/wprowadzenie-do-sql-instalacja-i-narzedzi-egzamin-70-461_1/
