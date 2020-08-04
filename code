@@ -1,0 +1,3348 @@
+
+--SELECT *
+--FROM Person.Address
+--WHERE
+--City LIKE '%Bothell%' --AND
+--AddressLine1 LIKE '%Street';
+--AND AddressLine1 > '1000%';
+
+--SELECT *
+--FROM Production.Product
+--WHERE
+--ListPrice > 0
+--AND NOT
+--ListPrice < 200;
+
+--SELECT * FROM
+--Sales.SalesOrderHeader
+--WHERE
+--OrderDate  BETWEEN '2011-06-12' AND '2011-06-13';
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--FirstName, LastName
+--FROM Person.Person;
+
+--SELECT
+--FirstName+ ' ' +LastName
+--FROM Person.Person
+
+--SELECT
+--FirstName, MiddleName, LastName, CONCAT(FirstName, ' ', MiddleName,' ', LastName)
+--FROM Person.Person
+
+--SELECT
+--    BusinessEntityID, VacationHours
+--FROM HumanResources.Employee
+
+--SELECT
+--    BusinessEntityID, YEAR(HireDate), YEAR(GetDate()), Year(GetDate()), YEAR(HireDate)
+--FROM HumanResources.Employee
+
+--SELECT
+--p.BusinessEntityID
+--,p.LastName
+--,p.FirstName
+--FROM Person.Person p
+--WHERE p.BusinessEntityID = 163
+
+
+--SELECT
+--LastName
+--,FirstName
+--,LoginID
+--FROM Person.Person
+--JOIN HumanResources.Employee
+--ON Person.Person.BusinessEntityID = HumanResources.Employee.BusinessEntityID
+
+--SELECT
+--LastName
+--,FirstName
+--,LoginID
+--FROM Person.Person p
+--JOIN HumanResources.Employee e
+--ON p.BusinessEntityID = e.BusinessEntityID
+
+
+--SELECT
+--    p.FirstName
+--    ,p.LastName
+--FROM Person.Person p
+
+
+--DECLARE @i INT
+--SET @i=11
+--PRINT @i
+
+--SET @i = @i*5
+--PRINT @i
+
+--SET @i = 10/3
+--PRINT @i
+
+----SELECT VacationHours FROM HumanResources.Employee WHERE BusinessEntityID=1
+--SELECT @i=VacationHours FROM HumanResources.Employee WHERE BusinessEntityID = 1
+--Print @i
+
+--DECLARE @BigINT BIGINT = 0
+--DECLARE @INT INT = 0
+--DECLARE @SmallINT SMALLINT = 0
+--DECLARE @TinyINT TINYINT = 0
+
+--SELECT
+--    DATALENGTH(@BigINT) AS [Bigint Size]
+--    ,DATALENGTH(@INT) AS [Int Size]
+--    ,DATALENGTH(@SmallINT) AS [Smallint Size]
+--    ,DATALENGTH(@TinyINT) AS [TinyInt]
+
+
+
+--DECLARE @char CHAR(10) = 'POLAND'
+--DECLARE @nchar NCHAR(10) = N'POLAND'
+--DECLARE @SmallINT SMALLINT = 0
+--DECLARE @TinyINT TINYINT = 0
+
+--SELECT
+--    DATALENGTH(@BigINT) AS [Bigint Size]
+--    ,DATALENGTH(@INT) AS [Int Size]
+--    ,DATALENGTH(@SmallINT) AS [Smallint Size]
+--    ,DATALENGTH(@TinyINT) AS [TinyInt]
+
+--DECLARE @datetime DATETIME = GetDate()
+--DECLARE @datetime2 DATETIME2 = SYSDATETIME()
+--DECLARE @date DATE = GetDate()
+--DECLARE @time TIME = SYSDATETIME()
+
+
+--DECLARE @datetime DATETIME = GetDate()
+--DECLARE @datetime2 DATETIME2 = SYSDATETIME()
+--DECLARE @date DATE = GetDate()
+--DECLARE @time TIME = SYSDATETIME()
+--DECLARE @datetimeofset DATETIMEOFFSET = SYSDATETIME()
+--DECLARE @smalldate SMALLDATETIME = GetDate()
+
+--SELECT
+
+--    @datetime            AS 'DATETIME'
+--    ,@datetime2            AS 'DATETIME2'
+--    ,@date                AS 'DATE'
+--    ,@time                AS 'TIME'
+--    ,@datetimeofset        AS 'DATETIMEOFSET'
+--    ,@smalldate            AS 'SMALLDATETIME'
+
+
+--DECLARE @d decimal(11,2) = 123456789.1234
+--DECLARE @f float = 123456789.1234
+--DECLARE @r real = 123456789.1234
+--DECLARE @m money = 123456789.1234
+
+--SELECT
+--    @d AS 'Decimal'
+--    , @f AS 'Float'
+--    , @r AS 'Real'
+--    , @m AS 'Money'
+
+--DECLARE @b BIT = 1
+
+--SELECT @b AS 'BIT', DATALENGTH(@b) AS 'DATALENGTH'
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT LoginID
+--        ,CHARINDEX('\', LoginID)
+--        ,SUBSTRING(LoginID, 1, CHARINDEX('\',LoginID))
+--        ,LEN(LoginID)
+--        ,SUBSTRING(LoginID, CHARINDEX('\', LoginID), 1000)
+--        ,SUBSTRING(LoginID, CHARINDEX('\', LoginID)+1, LEN(LoginID)-CHARINDEX('\', LoginID))
+--        ,UPPER(LoginID)
+--FROM [AdventureWorks2016CTP3].[HumanResources].[Employee]
+--GO
+
+--DECLARE @d DATETIME = GetDate()
+
+--SELECT FORMAT(@d, 'd', 'pl-PL'), FORMAT (@d, 'd', 'de-de'), FORMAT (@d, 'd', 'en-US')
+--SELECT FORMAT(@d, 'D', 'pl-PL'), FORMAT (@d, 'd', 'de-de'), FORMAT (@d, 'd', 'en-US')
+--SELECT FORMAT(@d, 'dd-MM-yyyy HH:mm')
+--SELECT FORMAT (123456789.3456, '0.0')
+--SELECT FORMAT(123456789.3456, '0.00')
+--SELECT FORMAT(123456789.3456, '0.000')
+--GO
+
+--DECLARE @c VARCHAR(100) = '        some text '
+--SELECT
+--     '!'+@c+'!'
+--    ,'!'+LTRIM(@c)+'!'
+--    ,'!'+RTRIM(@c)+'!'
+--    ,'!'+LTRIM(RTRIM(@c))+'!'
+--GO
+
+--SELECT
+--    PhoneNumber
+--    , REPLACE(PhoneNumber, '-', '')
+--    , REPLACE(REPLACE(REPLACE(REPLACE(PhoneNumber,'-',''),'(',''),')',' ','')
+--FROM Person.PersonPhone
+--GO
+
+--SELECT
+--    PostalCode
+--    ,REPLICATE('_',12 - LEN(PostalCode))+PostalCode
+--FROM Person.Address
+--GO
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--    GETDATE(), SYSDATETIME(), SYSDATETIMEOFFSET()
+--GO
+
+--SELECT  SYSDATETIMEOFFSET() 'Pacific time'
+--        ,SWITCHOFFSET (SYSDATETIMEOFFSET(), '+01:00') '[Time in Paris]';
+
+--DECLARE @d DATETIME2 = '2016-01-01 14:55:32' --Friday
+
+--SELECT
+--    YEAR(@d)    AS 'Year'
+--    ,MONTH(@d)    AS 'Month'
+--    ,DAY(@d)    AS 'Day'
+--    ,DATEPART(M,@d)    AS 'Month'
+--    ,DATEPART(hh,@d)    AS 'Hour'
+--    ,DATEPART(n,@d)    AS 'Minute'
+--    ,DATEPART(dw,@d)    AS 'WeekDay'
+--    ,DATEPART(wk,@d)    AS 'Week'
+--GO
+
+
+--DECLARE @d DATETIME2 = '2016-01-01 14:55:32' --Friday
+
+--SELECT
+--    YEAR(@d)    AS 'Year'
+--    ,MONTH(@d)    AS 'Month'
+--    ,DAY(@d)    AS 'Day'
+--    ,DATENAME(M,@d)    AS 'Month'
+--    ,DATENAME(hh,@d)    AS 'Hour'
+--    ,DATENAME(n,@d)    AS 'Minute'
+--    ,DATENAME(dw,@d)    AS 'WeekDay'
+--    ,DATENAME(wk,@d)    AS 'Week'
+--GO
+
+--SET LANGUAGE POLISH
+--SELECT DATENAME(dw, '2016-01-01')
+--GO
+--SET LANGUAGE GERMAN
+--SELECT DATENAME(dw, '2016-01-01')
+--GO
+--SET LANGUAGE ENGLISH
+--GO
+
+--DECLARE @d DATE = '1/2/3'
+--SELECT @d
+--GO
+
+--SET DATEFORMAT ymd
+--DECLARE @d DATE = '1/2/3'
+--SELECT @d
+--GO
+
+--SET DATEFORMAT dmy
+--DECLARE @d DATE = '1/2/3'
+--SELECT @d
+--GO
+
+--SELECT ABS (100), ABS (-100)
+--GO
+
+--SELECT CEILING(1.0), CEILING(1.5), CEILING(2.0), CEILING(2.5) ,CEILING(3.0)
+--GO
+
+--SELECT CEILING(-1.0), CEILING(-1.5), CEILING(-2.0), CEILING(-2.5) ,CEILING(-3.0)
+--GO
+
+--SELECT FLOOR(-1.0), FLOOR(-1.5), FLOOR(-2.0), FLOOR(-2.5) , FLOOR(-3.0)
+--GO
+
+--SELECT FLOOR(-1.0), FLOOR(-1.5), FLOOR(-2.0), FLOOR(-2.5) , FLOOR(-3.0)
+--GO
+
+--SELECT PI()
+--GO
+
+--SELECT POWER(2,0), POWER(2,1), POWER(2,2), POWER(2,3) , POWER(2,4), POWER(2,5)
+--GO
+
+--SELECT SQUARE(2),SQUARE(3),SQUARE(4)
+--SELECT SQRT(4),SQRT(9),SQRT(16)
+--GO
+
+--SELECT RAND(),RAND(),RAND()
+--GO
+
+--DECLARE @f FLOAT = RAND() *10
+--DECLARE @i INT = FLOOR(@f)
+
+--SELECT @f, @i
+--GO
+
+--SELECT ROUND(345.445,0), ROUND(345.445,1), ROUND(345.445,2)
+--GO
+--SELECT ROUND(345.445,0,1), ROUND(345.445,1,1), ROUND(345.445,2,1)
+--GO
+--SELECT ROUND(345.445,-1), ROUND(345.445,-2), ROUND(345.445,-3)
+--GO
+
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--        TotalDue
+--        ,'Total due equals ' + TotalDue
+--FROM Sales.SalesOrderHeader
+--WHERE SalesOrderID IN (43661, 43671, 43681)
+--GO
+
+--SELECT
+--        TotalDue
+--        ,'Total due equals ' + CAST(TotalDue AS VARCHAR(100))
+--FROM Sales.SalesOrderHeader
+--WHERE SalesOrderID IN (43661, 43671, 43681)
+--GO
+
+
+--SELECT
+--        TotalDue
+--        ,'Total due equals ' + CONVERT(VARCHAR(100), TotalDue)
+--FROM Sales.SalesOrderHeader
+--WHERE SalesOrderID IN (43661, 43671, 43681)
+--GO
+
+--DECLARE @d DATETIME = '2016-07-30'
+--SELECT
+--        CAST(@d AS VARCHAR(20))        AS 'CAST'
+--    , CONVERT(VARCHAR(20), @d, 101)        AS 'US'
+--    , CONVERT(VARCHAR(20), @d, 102)        AS 'ANSI'
+--    , CONVERT(VARCHAR(20), @d, 104)        AS 'German'
+--GO
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--    Name
+--    , DaysToManufacture
+--    , IIF(DaysToManufacture=0, 'Can be done in one day', 'Needs longer time to produce')
+--FROM Production.Product
+--GO
+
+--SELECT
+--    SalesOrderID
+--    , OrderDate
+--    , MONTH(OrderDate)        AS 'Month'
+--    , (MONTH(OrderDate)+2) / 3 AS 'Quarter number'
+--    , CHOOSE(
+--            (MONTH(OrderDate)+2) / 3,
+--            'First quarter',
+--            'Second quarter',
+--            'Third quarter',
+--            'Fourth quarter')        AS 'Quarter name'
+--FROM Sales.SalesOrderHeader
+--WHERE SalesOrderID IN (43659, 43764, 43872, 44116, 44366, 44521, 45296, 62862)
+--GO
+
+--DECLARE @txt char(10) = '16/9/12'
+--SELECT ISDATE (@txt)
+--GO
+
+--DECLARE @txt char(10) = '16/9/12'
+--SET DATEFORMAT ymd
+--SELECT ISDATE(@txt)
+--GO
+
+--DECLARE @txt char(10) = '123.45'
+--SELECT ISNUMERIC(@txt)
+--GO
+
+--DECLARE @txt char(10) = '123.456.789'
+--SELECT ISNUMERIC(@txt)
+--GO
+
+
+--SELECT
+--    SalesOrderID
+--    , OrderDate
+--    , MONTH(OrderDate)            AS 'Month'
+--    , (MONTH(OrderDate)+2) /3    AS 'Quarter number'
+--    , CASE (MONTH(OrderDate) +2) / 3
+--            WHEN 1 THEN 'First quarter'
+--            WHEN 2 THEN 'Second quarter'
+--            WHEN 3 THEN 'Third quarter'
+--            WHEN 4 THEN 'Fourth quarter'
+--            ELSE '???'
+--    END            AS 'Quarter name'
+--FROM Sales.SalesOrderHeader
+--WHERE SalesOrderID IN (43659, 43764, 43872, 44116, 44366, 44521, 45296, 62862)
+--GO
+
+
+--SELECT
+--    ProductID
+--    , Name
+--    , Color
+--    , CASE
+--            WHEN Color IS NULL THEN 'Not painted'
+--            WHEN Color = 'Black'  THEN 'Graphite'
+--            WHEN Color = 'Blue' THEN 'Turquoise'
+--            WHEN Color = 'Red' THEN 'Amaranth'
+--            ELSE Color
+--    END            AS 'New color'
+--FROM Production.Product
+--WHERE ProductID IN (1, 317, 717, 903, 901)
+
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT COUNT(name) AS 'Number of records'            FROM Production.Product
+--SELECT COUNT(*) AS 'Number of records (name)'        FROM Production.Product
+--SELECT COUNT(Color) AS 'Number of records (color)'    FROM Production.Product
+--SELECT COUNT(1) AS 'Number of records (1)'            FROM Production.Product
+
+--SELECT AVG(ListPrice) AS [average] FROM Production.Product
+--SELECT MIN(ListPrice) AS [min]       FROM Production.Product
+--SELECT MAX(ListPrice) AS [max]       FROM Production.Product
+--SELECT SUM(ListPrice) AS [sum]       FROM Production.Product
+
+--SELECT
+--      AVG(ListPrice) AS [average]
+--    , MIN(ListPrice) AS [min]
+--    , MAX(ListPrice) AS [max]
+--    , SUM(ListPrice) AS [sum]
+--FROM Production.Product
+
+--SELECT
+--    p.ProductSubcategoryID
+--    ,p.name
+--FROM Production.Product AS p
+
+--SELECT * FROM Production.ProductSubcategory
+
+--SELECT
+--    p.ProductSubcategoryID
+--    ,COUNT(*) AS 'Number of products in subcategory'
+--FROM Production.Product AS p
+
+--SELECT
+--    p.ProductSubcategoryID
+--    ,COUNT(*) AS 'Number of products in subcategory'
+--FROM Production.Product AS p
+--GROUP BY p.ProductSubcategoryID
+
+--SELECT
+--    p.ProductSubcategoryID
+--    ,COUNT(*) AS 'Number of products in subcategory'
+--FROM Production.Product AS p
+--GROUP BY p.ProductSubcategoryID
+--ORDER BY p.ProductSubcategoryID DESC
+
+
+--SELECT
+--    p.ProductSubcategoryID AS 'SUBCATEGORY'
+--    ,COUNT(*) AS 'Number of products in subcategory'
+--FROM Production.Product AS p
+--GROUP BY p.ProductSubcategoryID
+--ORDER BY SUBCATEGORY DESC
+
+
+--SELECT
+--    p.ProductSubcategoryID AS 'SUBCATEGORY'
+--    ,MIN(ListPrice) AS 'MinPriceInSubCategory'
+--FROM Production.Product AS p
+--WHERE ProductSubcategoryID IS NOT NULL
+--GROUP BY p.ProductSubcategoryID
+--HAVING MIN(ListPrice) > 500
+--ORDER BY MinPriceInSubCategory DESC
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--content of table
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--FROM Sales.SpecialOffer
+
+-- how many records has MaxQty < 0
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--FROM Sales.SpecialOffer
+--WHERE MaxQty <= 0
+
+
+-- how many NULL's?
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--FROM Sales.SpecialOffer
+--WHERE MaxQty = NULL
+
+-- how many NOT NULL's?
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--FROM Sales.SpecialOffer
+--WHERE MaxQty <> NULL
+
+-- how many IS NULL's?
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--FROM Sales.SpecialOffer
+--WHERE MaxQty IS NULL
+
+--SET ANSI_NULLS ON
+
+-- ANISNULLS = ON => NULL or <> NULL return 0 rows (ISO standart)
+-- ANISNULLS = OFF => NULL or <> NULL return XYX rows (non ISO)
+
+--Expressions with nulls
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--    , MinQty = 2 AS NewMinQty
+--    , MaxQty = 2 AS NewMaxQty
+--FROM Sales.SpecialOffer
+
+--ORDER BY & NULL's
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , MaxQty
+--FROM Sales.SpecialOffer
+--ORDER BY MaxQty DESC
+
+--ISNULL
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , ISNULL(MaxQty, 999999)
+--FROM Sales.SpecialOffer
+
+--COALESCE
+--SELECT
+--    SpecialOfferID
+--    , DiscountPct
+--    , Category
+--    , MinQty
+--    , COALESCE(MaxQty, 999999)
+--FROM Sales.SpecialOffer
+
+--content of table
+--SELECT
+--        ProductID, Name
+--        , Weight, Size, Color
+--FROM Production.Product
+--WHERE ProductID IN (1, 510, 680, 709, 711, 849)
+
+--COALESCE
+--SELECT
+--    ProductID,Name
+--    , COALESCE(CAST(Weight AS VARCHAR), Size, Color, 'Call for more info') AS Description
+--    , Weight, Size, Color
+--FROM Production.Product
+--WHERE ProductID IN (1, 510, 680, 709, 711, 849)
+
+
+--COALESCE
+--SELECT
+--    ProductID,Name
+--    , ISNULL(CAST(Weight AS VARCHAR)
+--    , ISNULL (Size
+--    , ISNULL (Color, 'Call for more info'))) AS Description
+--    , Weight, Size, Color
+--FROM Production.Product
+--WHERE ProductID IN (1, 510, 680, 709, 711, 849)
+
+--the same with CASE
+--SELECT
+--    ProductID,Name
+--    , CASE
+--        WHEN Weight IS NOT NULL THEN CAST (Weight AS VARCHAR)
+--        WHEN Size IS NOT NULL THEN Size
+--        WHEN Color IS NOT NULL THEN Color
+--        ELSE 'Call for more info'
+--    END AS Description
+--    , Weight, Size, Color
+--FROM Production.Product
+--WHERE ProductID IN (1, 510, 680, 709, 711, 849)
+
+---------------------------------------------------------------------------------------------
+--demo for NULLIF
+
+--CREATE TABLE #ContactHistory3(
+--    Id INT IDENTITY PRIMARY KEY,
+--    CustomerId INT,
+--    OldContact NVARCHAR(50),
+--    NewContact NVARCHAR(50),
+--    OldAddress NVARCHAR(50),
+--    NewAddress NVARCHAR(50))
+
+--INSERT INTO #ContactHistory3 VALUES(101, NULL, 'Kevin Brown', NULL, '7484 Roundtree Drive')
+--INSERT INTO #ContactHistory3 VALUES(101, 'Kevin Brown', 'Kevin Brown', '7484 Roundtree Drive', '6387 Scenic Avenue')
+--INSERT INTO #ContactHistory3 VALUES(101, 'Kevin Brown', 'David Lugo','6387 Scenic Avenue', '6387 Scenic Avenue')
+--INSERT INTO #ContactHistory3 VALUES(101, 'David Lugo', 'Andrew Hill', '6387 Scenic Avenue','6387 Scenic Avenue')
+
+--INSERT INTO #ContactHistory3 VALUES(101, NULL, 'Nancy Wilson', NULL, '9228 Via Del Sol')
+--INSERT INTO #ContactHistory3 VALUES(101, 'Nancy Wilson', 'Frank Miller', '9228 Via Del Sol', '9228 Via Del Sol')
+--INSERT INTO #ContactHistory3 VALUES(101, 'Frank Miller', 'Frank Miller','9228 Via Del Sol', '5724 Victory Lane')
+--INSERT INTO #ContactHistory3 VALUES(101, 'Frank Miller', 'Bob Zwilling', '5724 Victory Lane','5724 Victory Lane')
+
+--SELECT * FROM #ContactHistory3
+
+--SELECT
+--    Id
+--    , CustomerId
+--    , NULLIF(NewContact, OldContact) AS 'Change in contact person'
+--    , NULLIF(NewAddress, OldAddress) AS 'Change in address'
+--FROM #ContactHistory3
+
+----NULLIF & ISNULL
+--SELECT
+--    Id
+--    , CustomerId
+--    , ISNULL(NULLIF(NewContact, OldContact), '') AS 'Change in contact person'
+--    , ISNULL(NULLIF(NewAddress, OldAddress), '') AS 'Change in address'
+--FROM #ContactHistory3
+
+----CLEANUP
+--DROP TABLE #ContactHistory3
+-----------------------------------------------------------------------------------------------
+
+--SELECT
+--      p.Title
+--    , p.FirstName
+--    , p.MiddleName
+--    , p.LastName
+
+--FROM Person.Person p
+
+--DECLARE @Title NVARCHAR(50)
+--DECLARE @FirstName NVARCHAR(50)
+--DECLARE @MiddleName NVARCHAR(50)
+--DECLARE @LastName NVARCHAR(50)
+
+--SELECT @Title=Title FROM Person.Person
+--where title is not null
+--select @Title
+--select * from person.Person where title is not null
+
+--SELECT @FirstName=FirstName FROM Person.Person
+--SELECT @MiddleName=MiddleName FROM Person.Person
+--SELECT @LastName=LastName FROM Person.Person
+
+--CREATE TABLE #TitleFirstMiddleLastName(
+--    Id INT IDENTITY PRIMARY KEY,
+--    BusinessEntityID INT,
+--    Title NVARCHAR(50),
+--    FirstName NVARCHAR(50),
+--    MiddleName NVARCHAR(50),
+--    LastName NVARCHAR(50))
+
+--INSERT INTO #TitleFirstMiddleLastName (Title, FirstName, MiddleName, LastName)
+--SELECT Title, FirstName, MiddleName, LastName FROM Person.Person
+
+--SELECT * FROM #TitleFirstMiddleLastName
+
+--SELECT
+--    Id
+--    , BusinessEntityID
+--    , COALESCE(Title,'') AS 'Title'
+--    , COALESCE(FirstName,'') AS 'FirstName'
+--    , COALESCE(MiddleName,'') AS 'MiddleName'
+--    , COALESCE(LastName,'') AS 'LastName'
+--FROM #TitleFirstMiddleLastName
+
+----CLEANUP, CZYSCI TABELE
+--DELETE FROM  #TitleFirstMiddleLastName
+---- USUWA OBIEKT
+--DROP TABLE #TitleFirstMiddleLastName
+
+---------------------------------------------------------------------------------------------
+
+--USE AdventureWorks2016CTP3
+
+--SELECT Color FROM Production.Product
+
+--SELECT DISTINCT Color FROM Production.Product
+
+--SELECT Class FROM Production.Product
+
+--SELECT DISTINCT Class FROM Production.Product
+
+--SELECT Color, Class FROM Production.Product
+
+--SELECT DISTINCT Color, Class FROM Production.Product
+
+
+--SELECT
+--    Name, ListPrice
+--FROM Production.Product
+--ORDER BY ListPrice DESC
+
+--SELECT TOP(3)
+--    Name, ListPrice
+--FROM Production.Product
+--ORDER BY ListPrice DESC
+
+--SELECT TOP(3) WITH TIES
+--    Name, ListPrice
+--FROM Production.Product
+--ORDER BY ListPrice DESC
+
+--SELECT TOP(1) PERCENT
+--    Name, ListPrice
+--FROM Production.Product
+--ORDER BY ListPrice DESC
+
+--SELECT TOP(1) PERCENT WITH TIES
+--    Name, ListPrice
+--FROM Production.Product
+--ORDER BY ListPrice DESC
+
+
+--SELECT
+--    LastName, FirstName
+--FROM Person.Person TABLESAMPLE (1 PERCENT)
+
+--SELECT
+--    LastName, FirstName
+--FROM Person.Person TABLESAMPLE (500 ROWS)
+
+----QUIZ
+
+--SELECT
+--City, PostalCode
+--FROM
+--Person.Address
+--ORDER BY City ASC
+
+---------------------------------------------------------------------------------------------
+--Title: GROUP BY, ROLLUP I CUBE
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--WHERE p.Color IS NOT NULL AND p.Size IS NOT NULL AND p.Class IS NOT NULL
+--GROUP BY p.Color, p.Size, p.Class
+
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--WHERE p.Color IS NOT NULL AND p.Size IS NOT NULL AND p.Class IS NOT NULL
+--GROUP BY ROLLUP (p.Color, p.Size, p.Class)
+
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--WHERE p.Color IS NOT NULL AND p.Size IS NOT NULL AND p.Class IS NOT NULL
+--GROUP BY CUBE (p.Color, p.Size, p.Class)
+
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--WHERE p.Color IS NOT NULL AND p.Size IS NOT NULL AND p.Class IS NOT NULL
+--GROUP BY GROUPING SETS ((p.Color), (p.Size), (p.Color, p.Size, p.Class))
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--WHERE p.Color IS NOT NULL AND p.Size IS NOT NULL AND p.Class IS NOT NULL
+--GROUP BY GROUPING SETS ((p.Color), (p.Size), (p.Class))
+
+
+---------------------------------------------------------------------------------------------
+--Title: Funkcja GROUPING_ID
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--WHERE p.Color IS NOT NULL AND p.Size IS NOT NULL AND p.Class IS NOT NULL
+--GROUP BY GROUPING SETS ((p.Color), (p.Size), (p.Color, p.Size, p.Class))
+
+
+--SELECT
+--    p.Color,
+--    p.Size,
+--    p.Class,
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--GROUP BY GROUPING SETS ((p.Color), (p.Size), (p.Class))
+
+
+--SELECT
+--    p.Color, GROUPING_ID(p.Color) AS 'Is color aggregated',
+--    p.Size, GROUPING_ID(p.Size) AS 'Is size aggregated',
+--    p.Class, GROUPING_ID(p.Class) AS 'Is class aggregated',
+--    AVG(p.ListPrice) AS AveragePrice
+--FROM Production.Product AS p
+--GROUP BY GROUPING SETS ((p.Color), (p.Size), (p.Class))
+
+
+--SELECT
+--    p.Color, GROUPING_ID(p.Color) AS 'Is color aggregated',
+--    p.Size, GROUPING_ID(p.Size) AS 'Is size aggregated',
+--    p.Class, GROUPING_ID(p.Class) AS 'Is class aggregated',
+--    AVG(p.ListPrice) AS AveragePrice,
+--    GROUPING_ID(p.Color,p.Size,p.Class) AS "Aggregation mask"
+--FROM Production.Product AS p
+--GROUP BY GROUPING SETS ((p.Color), (p.Size), (p.Class))
+
+-----------------------------------------------------------------------------------
+
+-------Próba wyciągniecia tylko tytułów z Job Title które się NIE powtarzają:------
+--USE AdventureWorks2016CTP3
+--GO
+
+
+--SELECT DISTINCT
+--    e.JobTitle
+--FROM HumanResources.Employee AS e
+
+--CREATE TABLE #JobTitle(
+--    JobTitle NVARCHAR(50),
+--    JobTitle2 NVARCHAR(50))
+
+--INSERT INTO #JobTitle (JobTitle)
+--SELECT JobTitle FROM HumanResources.Employee
+
+----INSERT INTO #JobTitle (JobTitle2)
+----SELECT JobTitle FROM HumanResources.Employee
+
+--SELECT * FROM #JobTitle
+
+---- To zapytanie wyszuka mi w kolumnie JobTitle ile razy powtarza się konkretny rekord wiecej niż1 raz:
+--SELECT COUNT( *),  JobTitle FROM HumanResources.Employee GROUP BY JobTitle HAVING COUNT(*)>1
+
+
+
+---------------------------------------------------------------------------------------------
+--Title: INNER JOIN
+--USE AdventureWorks2016CTP3
+--GO
+
+--Let's see employees
+--SELECT * FROM HumanResources.Employee
+
+--What is the name of employee "4"
+--SELECT * FROM Person.Person WHERE BusinessEntityID = 4
+
+--join 2 tables - old syntax ANSI-89 STARA SKŁADNIA
+--SELECT
+--    e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM HumanResources.Employee AS e, Person.Person AS p
+--WHERE e.BusinessEntityID = p.BusinessEntityID
+
+--join new sytax ANSI-92 NOWA SKŁADNIA
+
+--SELECT
+--    e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM HumanResources.Employee AS e
+--JOIN Person.Person AS p on e.BusinessEntityID = p.BusinessEntityID
+
+-- the same query without aliases
+--SELECT
+--    HumanResources.Employee.BusinessEntityID
+--    ,JobTitle
+--    ,FirstName
+--    ,LastName
+--FROM  HumanResources.Employee
+--JOIN Person.Person on HumanResources.Employee.BusinessEntityID = Person.Person.BusinessEntityID
+
+-- the same query without aliases
+--SELECT
+--    BusinessEntityID
+--    ,JobTitle
+--    ,FirstName
+--    ,LastName
+--FROM  HumanResources.Employee
+--JOIN Person.Person on HumanResources.Employee.BusinessEntityID = Person.Person.BusinessEntityID
+
+
+---- number of records in join (works like a filter expression)
+
+--SELECT
+--    e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM  HumanResources.Employee AS e
+--JOIN Person.Person AS p on e.BusinessEntityID = p.BusinessEntityID
+
+---- next example JOIN:
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM  Person.Person AS p
+--JOIN HumanResources.Employee AS e on e.BusinessEntityID = p.BusinessEntityID
+
+----INNER JOIN = JOIN
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM HumanResources.Employee AS e
+--INNER JOIN Person.Person AS p on e.BusinessEntityID = p.BusinessEntityID
+-----------------------------------------------------------------------------------------------
+----Title: OUTER JOIN
+
+----INNER JOIN
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM HumanResources.Employee AS e
+--INNER JOIN Person.Person AS p on e.BusinessEntityID = p.BusinessEntityID
+
+----Outer join
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM HumanResources.Employee AS e
+--LEFT OUTER JOIN Person.Person AS p on e.BusinessEntityID = p.BusinessEntityID
+
+----Outer join in reverse order
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM Person.Person AS p
+--LEFT OUTER JOIN HumanResources.Employee AS e on e.BusinessEntityID = p.BusinessEntityID
+---- Wypisanie wszystkich tabel z AdvnetureWorks2016CTP3:
+----SELECT
+----*
+----FROM INFORMATION_SCHEMA.TABLES;
+
+---- skipping Outer LEFT JOIN
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM Person.Person AS p
+--LEFT JOIN HumanResources.Employee AS e on e.BusinessEntityID = p.BusinessEntityID
+
+---- skipping Outer RIGHT JOIN zamiana tych słów RIGHT<>LEFT skutkuje że teraz wyjściową tabelą (ponieważ po jest
+---- prawej stronie) "HumanResources.Employee" a nie jak w przypadku LEFT tabela "Person.Person"
+
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM Person.Person AS p
+--RIGHT JOIN HumanResources.Employee AS e on e.BusinessEntityID = p.BusinessEntityID
+
+--/*
+--INNER JOIN            JOIN
+--LEFT OUTER JOIN        LEFT JOIN
+--RIGHT OUTER JOIN    RIGHT JOIN
+--*/
+
+---- finding row not present in second table
+--SELECT
+--     e.BusinessEntityID
+--    ,e.JobTitle
+--    ,p.FirstName
+--    ,p.LastName
+--FROM Person.Person AS p
+--LEFT OUTER JOIN HumanResources.Employee AS e on e.BusinessEntityID = p.BusinessEntityID
+--WHERE e.LoginID IS NULL
+
+---- finding additional data if present
+
+--SELECT
+--     p.ProductID
+--    ,p.Name
+--    ,pr.Comments
+--FROM Production.Product p
+--JOIN Production.ProductReview pr ON p.ProductID = pr.ProductID
+
+
+--SELECT
+--     p.ProductID
+--    ,p.Name
+--    ,pr.Comments
+--FROM Production.Product p
+--JOIN Production.ProductReview pr ON p.ProductID = pr.ProductID
+
+
+--SELECT
+--     p.ProductID
+--    ,p.Name
+--    ,ISNULL(pr.Comments,'---')
+--FROM Production.Product p
+--LEFT JOIN Production.ProductReview pr ON p.ProductID = pr.ProductID
+
+
+---- Reeport of sold products in May 2015
+--SELECT
+--    p.Name
+--    ,SUM(sod.OrderQty) AS SumAmount
+--    ,SUM(sod.OrderQty * sod.UnitPrice) AS SumAmount
+--FROM Production.Product p
+--JOIN Sales.SalesOrderDetail sod ON sod.ProductID = p.ProductID
+--JOIN Sales.SalesOrderHeader soh ON soh.SalesOrderID = sod.SalesOrderID
+--WHERE soh.OrderDate BETWEEN '2014-05-01' AND '2014-05-31'
+--GROUP BY p.Name
+
+---- Reeport of sold and not-sold products in May 2014 - not working
+--SELECT
+--    p.Name
+--    ,SUM(sod.OrderQty) AS SumAmount
+--    ,SUM(sod.OrderQty * sod.UnitPrice) AS SumValue
+--FROM Production.Product p
+--LEFT JOIN Sales.SalesOrderDetail sod ON sod.ProductID = p.ProductID
+--LEFT JOIN Sales.SalesOrderHeader soh ON soh.SalesOrderID = sod.SalesOrderID
+--WHERE soh.OrderDate BETWEEN '2014-05-01' AND '2014-05-31'
+--GROUP BY p.Name
+
+---- Reeport of sold and not-sold products in May 2014 - working
+--SELECT
+--    p.Name
+--    ,SUM(sod.OrderQty) AS SumAmount
+--    ,SUM(sod.OrderQty * sod.UnitPrice) AS SumValue
+--FROM Production.Product p
+--LEFT JOIN Sales.SalesOrderDetail sod ON sod.ProductID = p.ProductID
+--LEFT JOIN Sales.SalesOrderHeader soh ON soh.SalesOrderID = sod.SalesOrderID
+--                                AND soh.OrderDate BETWEEN '2014-05-01' AND '2014-05-31'
+--GROUP BY p.Name
+
+-------------QUIZ JOIN--------------------------------------------------------------------
+--SELECT
+--     p.LastName
+--    ,p.FirstName
+--FROM Person.Person p
+
+--SELECT
+--     a.PhoneNumber
+--FROM Person.PersonPhone a
+
+
+--SELECT
+--     p.LastName
+--    ,p.FirstName
+--    ,e.PhoneNumber
+--FROM Person.Person p
+--LEFT JOIN Person.PersonPhone e ON p.BusinessEntityID = e.BusinessEntityID
+
+
+--SELECT
+--*
+--FROM
+--Person.PersonPhone
+
+---------------------------------------------------------------------------------------------
+--Title: Złączenia wielu tabel
+
+--USE AdventureWorks2016CTP3
+--GO
+
+----Join on multiple tables #1
+--SELECT
+--    p.FirstName
+--    ,p.LastName
+--    ,BE.BusinessEntityID
+--    ,BEA.BusinessEntityID
+--    ,A.City
+--    ,A.PostalCode
+--    ,A.AddressLine1
+--    ,A.AddressLine2
+--FROM Person.Person p
+--JOIN Person.BusinessEntity BE ON BE.BusinessEntityID = p.BusinessEntityID
+--JOIN Person.BusinessEntityAddress BEA ON BEA.BusinessEntityID = BE.BusinessEntityID
+--JOIN Person.Address A ON A.AddressID = BEA.AddressID
+
+----eliminate what is not required
+
+--SELECT
+--    p.FirstName
+--    ,p.LastName
+--    ,A.City
+--    ,A.PostalCode
+--    ,A.AddressLine1
+--    ,A.AddressLine2
+--FROM Person.Person p
+--JOIN Person.BusinessEntity BE ON BE.BusinessEntityID = p.BusinessEntityID
+--JOIN Person.BusinessEntityAddress BEA ON BEA.BusinessEntityID = BE.BusinessEntityID
+--JOIN Person.Address A ON A.AddressID = BEA.AddressID
+
+---- Join on multiple tables #2
+
+--SELECT
+--    p.ProductID
+--    ,p.Name
+--FROM Production.Product p
+
+--SELECT
+--    p.ProductID
+--    ,p.Name
+--    ,p.ProductSubcategoryID
+--    ,ps.Name
+--    ,ps.ProductSubcategoryID
+--FROM Production.Product p
+--JOIN Production.ProductSubcategory ps ON ps.ProductCategoryID = p.ProductSubcategoryID
+
+--SELECT
+--    p.ProductID
+--    ,p.Name
+--    ,p.ProductSubcategoryID
+--    ,ps.Name
+--    ,ps.ProductSubcategoryID
+--    ,pc.Name
+--FROM Production.Product p
+--JOIN Production.ProductSubcategory ps ON ps.ProductCategoryID = p.ProductSubcategoryID
+--JOIN Production.ProductCategory pc ON pc.ProductCategoryID = ps.ProductSubcategoryID
+
+---- Join on mulitple tables #3
+
+--SELECT
+--*
+--FROM
+----Person.Person p
+--Sales.SalesOrderHeader SOH
+
+
+--SELECT
+--*
+--FROM Sales.SalesOrderHeader SOH
+--WHERE SOH.OrderDate = '2011-05-31'
+
+
+--SELECT
+--*
+--FROM Sales.SalesOrderHeader SOH
+--JOIN Person.Person p ON p.BusinessEntityID = SOH.SalesPersonID
+--JOIN Sales.SalesOrderDetail SOD ON SOD.SalesOrderID = SOH.SalesOrderID
+--WHERE SOH.OrderDate = '2011-05-31'
+
+--SELECT
+--*
+--FROM Sales.SalesOrderHeader SOH
+--JOIN Person.Person p ON p.BusinessEntityID = SOH.SalesPersonID
+--JOIN Sales.SalesOrderDetail SOD ON SOD.SalesOrderID = SOH.SalesOrderID
+--JOIN Production.Product PRD ON PRD.ProductID = SOD.ProductID
+--WHERE SOH.OrderDate = '20110531'
+
+
+----SET Language Polish
+
+----SELECT CONVERT (datetime, '20181231')
+------Format daty bez myslnikow yyyymmdd
+----Short ISO 8061
+
+--SELECT
+--*
+--FROM Sales.SalesOrderHeader SOH
+--JOIN Person.Person p ON p.BusinessEntityID = SOH.SalesPersonID
+--JOIN Sales.SalesOrderDetail SOD ON SOD.SalesOrderID = SOH.SalesOrderID
+--JOIN Production.Product PRD ON PRD.ProductID = SOD.ProductID
+--JOIN Production.ProductSubcategory ps ON ps.ProductSubcategoryID = PRD.ProductSubcategoryID
+--JOIN Production.ProductCategory pc ON pc.ProductCategoryID = ps.ProductCategoryID
+--WHERE SOH.OrderDate = '20110531'
+
+
+--SELECT
+--    p.FirstName
+--    ,p.LastName
+--    ,pc.Name
+--    ,sum(SOD.OrderQty * SOD.UnitPrice) AS TotalValue
+--FROM Sales.SalesOrderHeader SOH
+--JOIN Person.Person p ON p.BusinessEntityID = SOH.SalesPersonID
+--JOIN Sales.SalesOrderDetail SOD ON SOD.SalesOrderID = SOH.SalesOrderID
+--JOIN Production.Product PRD ON PRD.ProductID = SOD.ProductID
+--JOIN Production.ProductSubcategory ps ON ps.ProductSubcategoryID = PRD.ProductSubcategoryID
+--JOIN Production.ProductCategory pc ON pc.ProductCategoryID = ps.ProductCategoryID
+--WHERE SOH.OrderDate = '20110531'
+--GROUP BY p.FirstName, p.LastName, pc.[Name]
+
+
+---------------------------------------------------------------------------------------------
+--Title: Złączenia tabel CROSS JOIN
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--    st.TerritoryID
+--    ,st.Name
+--FROM Sales.SalesTerritory st
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.TerritoryID
+--FROM Sales.SalesPerson sp
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,st.TerritoryID
+--    ,st.Name
+--FROM Sales.SalesPerson sp
+--JOIN Sales.SalesTerritory st ON st.TerritoryID = sp.TerritoryID
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,p.FirstName
+--    ,p.LastName
+--    ,st.TerritoryID
+--    ,st.Name
+--FROM Sales.SalesPerson sp
+--JOIN Sales.SalesTerritory st ON st.TerritoryID = sp.TerritoryID
+--JOIN Person.Person p ON p.BusinessEntityID = sp.BusinessEntityID
+
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,p.FirstName
+--    ,p.LastName
+--    ,st.TerritoryID
+--    ,st.Name
+--FROM Sales.SalesPerson sp
+--CROSS JOIN Sales.SalesTerritory st -- ON st.TerritoryID = sp.TerritoryID
+--JOIN Person.Person p ON p.BusinessEntityID = sp.BusinessEntityID
+
+---- Routes between stores
+
+--SELECT
+--    *
+--    FROM Sales.vStoreWithAddresses
+--    WHERE CountryRegionName = 'Germany'
+--    ORDER BY City
+
+--SELECT
+-- DISTINCT s1.City
+--FROM Sales.vStoreWithAddresses s1
+--WHERE CountryRegionName = 'Germany'
+--ORDER BY s1.City
+
+
+--SELECT
+-- DISTINCT s1.City, s2.city
+--FROM Sales.vStoreWithAddresses s1
+--CROSS JOIN Sales.vStoreWithAddresses s2
+--WHERE
+--    s1.CountryRegionName = 'Germany' AND s2.CountryRegionName = 'Germany'
+--    AND s1.City <> s2.City
+--ORDER BY s1.City, s2.city
+
+
+--SELECT
+-- DISTINCT s1.City, s2.city
+--FROM Sales.vStoreWithAddresses s1
+--CROSS JOIN Sales.vStoreWithAddresses s2
+--WHERE
+--    s1.CountryRegionName = 'Germany' AND s2.CountryRegionName = 'Germany'
+--    AND s1.City <> s2.City
+--ORDER BY s1.City, s2.city
+
+
+---------------------------------------------------------------------------------------------
+--Title: Złączenia tabel FULL JOIN
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT * FROM Production.UnitMeasure
+
+--SELECT
+--    p.Name
+--    , p.SizeUnitMeasureCode
+--FROM Production.Product p
+--ORDER BY p.SizeUnitMeasureCode DESC
+
+--SELECT
+--     p.Name
+--    ,p.SizeUnitMeasureCode
+--    ,um.UnitMeasureCode
+--    ,um.Name
+--FROM Production.Product p
+--JOIN Production.UnitMeasure um ON p.SizeUnitMeasureCode = um.UnitMeasureCode
+--ORDER BY p.SizeUnitMeasureCode DESC
+
+
+--SELECT
+--     p.Name
+--    ,p.SizeUnitMeasureCode
+--    ,um.UnitMeasureCode
+--    ,um.Name
+--FROM Production.Product p
+--LEFT JOIN Production.UnitMeasure um ON p.SizeUnitMeasureCode = um.UnitMeasureCode
+--ORDER BY p.SizeUnitMeasureCode DESC
+
+
+--SELECT
+--     p.Name
+--    ,p.SizeUnitMeasureCode
+--    ,um.UnitMeasureCode
+--    ,um.Name
+--FROM Production.Product p
+--FULL OUTER JOIN Production.UnitMeasure um ON p.SizeUnitMeasureCode =  um.UnitMeasureCode
+--ORDER BY p.SizeUnitMeasureCode DESC
+
+
+
+---------------------------------------------------------------------------------------------
+--Title: Podzapytania skalarne
+
+-- starting queries
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--FROM Sales.SalesPerson AS sp
+
+--SELECT AVG(Bonus) FROM Sales.SalesPerson
+
+
+---- Scalar subquery
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--    ,(SELECT AVG(Bonus) FROM Sales.SalesPerson) AS AverageBonus
+--FROM Sales.SalesPerson AS sp
+
+----Using scalar subquery in calcucations
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--    ,(SELECT AVG(Bonus) FROM Sales.SalesPerson) AS AverageBonus
+--    ,sp.Bonus - (SELECT AVG (Bonus) FROM Sales.SalesPerson) AS 'DifferenceInBonus'
+--FROM Sales.SalesPerson AS sp
+
+----Mixing Joins and subqueries
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--    ,(SELECT AVG(Bonus) FROM Sales.SalesPerson) AS AverageBonus
+--    ,sp.Bonus - (SELECT AVG (Bonus) FROM Sales.SalesPerson) AS 'DifferenceInBonus'
+--    , 100*sp.Bonus / (SELECT SUM(Bonus) FROM Sales.SalesPerson) AS 'PercentOfTotal'
+--FROM Sales.SalesPerson AS sp
+--JOIN Person.Person p ON p.BusinessEntityID = sp.BusinessEntityID
+--ORDER BY PercentOfTotal DESC
+
+---- Using scalar subquery in WHERE clause
+
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--    ,(SELECT AVG(Bonus) FROM Sales.SalesPerson) AS AverageBonus
+--    ,sp.Bonus - (SELECT AVG (Bonus) FROM Sales.SalesPerson) AS 'DifferenceInBonus'
+--FROM Sales.SalesPerson AS sp
+--WHERE sp.Bonus > (SELECT AVG(Bonus) FROM Sales.SalesPerson)
+
+---- Who has the same bonus as Employee 280
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--    ,(SELECT
+--        p.FirstName
+--    FROM Person.Person p WHERE p.BusinessEntityID = sp.BusinessEntityID)
+--    ,(SELECT
+--        p.LastName
+--    FROM Person.Person p WHERE p.BusinessEntityID = sp.BusinessEntityID)
+--FROM Sales.SalesPerson sp
+--WHERE sp.Bonus = (SELECT Bonus FROM Sales.SalesPerson WHERE BusinessEntityID=280)
+
+--SELECT
+--*
+--FROM
+--Sales.SalesPerson
+
+----280    5000.00    Pamela
+----282    5000.00    José
+--SELECT
+--    p.FirstName
+--    ,p.LastName
+--FROM Person.Person p
+--WHERE p.BusinessEntityID = 282
+
+
+---- Query returning multiple values
+--SELECT
+--    ProductId
+--FROM Production.Product WHERE Color = 'Multi'
+
+
+---- Let's use the result in outer query - error
+--SELECT
+--    *
+--FROM Sales.SalesOrderDetail As sod
+--WHERE
+--    sod.ProductID =
+--    (
+--        SELECT
+--            ProductID
+--        FROM Production.Product WHERE Color = 'Multi'
+--    )
+
+---- inner query put as resultset
+--SELECT
+--*
+--FROM Sales.SalesOrderDetail AS sod
+--WHERE
+--    sod.ProductID IN (712, 713, 714, 715, 716, 855, 856, 857)
+
+---- multivalued subquery - ok
+--SELECT
+--    *
+--FROM Sales.SalesOrderDetail AS sod
+--WHERE
+--    sod.ProductID IN
+--    (
+--        SELECT
+--            ProductID
+--        FROM Production.Product WHERE Color = 'Multi'
+--    )
+
+---- the same in the form of join
+--SELECT
+--    *
+--FROM Sales.SalesOrderDetail AS sod
+--JOIN Production.Product AS p ON p.ProductID = sod.ProductID
+--WHERE
+--    p.Color = 'Multi'
+
+
+---------------------------------------------------------------------------------------------
+--Title: Podzapytania zawierające wiele wartości
+
+-- Who has the same bonus as Employee 280 -- PRZYKŁAD jak nadać nazwę kolumnom pozapytania
+--SELECT
+--    sp.BusinessEntityID
+--    ,sp.Bonus
+--    ,(SELECT
+--        p.FirstName
+--    FROM Person.Person p WHERE p.BusinessEntityID = sp.BusinessEntityID)"Imionka"
+--    ,(SELECT
+--        p.LastName
+--    FROM Person.Person p WHERE p.BusinessEntityID = sp.BusinessEntityID)"Nazwis"
+--FROM Sales.SalesPerson sp
+--WHERE sp.Bonus = (SELECT Bonus FROM Sales.SalesPerson WHERE BusinessEntityID=280)
+
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+--Title: Podzapytania, jako wirtualne tabele
+
+--USE AdventureWorks2016CTP3
+--GO
+
+----a more comlicated query returning address ZWYKŁE QUERY
+--SELECT
+--     p.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,at.Name
+--    ,a.PostalCode
+--    ,a.City
+--    ,a.AddressLine1
+--    ,a.AddressLine2
+--FROM Person.Person AS p
+--JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID
+--JOIN Person.Address AS a ON a.AddressID= bea.AddressID
+--JOIN Person.AddressType AS at ON bea.AddressTypeID = at.AddressTypeID
+--WHERE at.Name = 'Home'
+
+----Let's use it with employee table QUERY z podzapytaniem
+
+--SELECT
+--     emp.BusinessEntityID
+--    ,emp.HireDate
+--    ,emp.LoginID
+--    ,Addr.*
+--FROM HumanResources.Employee AS emp
+--INNER JOIN
+--(
+--SELECT
+--     p.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,at.Name
+--    ,a.PostalCode
+--    ,a.City
+--    ,a.AddressLine1
+--    ,a.AddressLine2
+--    FROM Person.Person AS p
+--    INNER JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID
+--    INNER JOIN Person.Address AS a ON a.AddressID= bea.AddressID
+--    INNER JOIN Person.AddressType AS at ON bea.AddressTypeID = at.AddressTypeID
+--    WHERE at.Name = 'Home'
+--)
+
+--AS Addr ON Addr.BusinessEntityID = emp.BusinessEntityID
+
+--ORDER BY FirstName, LastName
+
+
+----Let's use it with JobCandidate table
+
+--SELECT
+--    Addr.*
+--FROM HumanResources.JobCandidate jc
+--INNER JOIN
+--(
+--SELECT
+--     p.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,at.Name
+--    ,a.PostalCode
+--    ,a.City
+--    ,a.AddressLine1
+--    ,a.AddressLine2
+--    FROM Person.Person AS p
+--    INNER JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID
+--    INNER JOIN Person.Address AS a ON a.AddressID= bea.AddressID
+--    INNER JOIN Person.AddressType AS at ON bea.AddressTypeID = at.AddressTypeID
+--    WHERE at.Name = 'Home'
+--) AS Addr ON Addr.BusinessEntityID = jc.BusinessEntityID
+
+----ORDER BY FirstName, LastName
+
+
+
+-- the same as a ONLY JOIN expression
+
+--USE AdventureWorks2016CTP3
+--GO
+--SELECT
+--     emp.LoginID
+--    ,emp.HireDate
+--    ,p.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,at.Name
+--    ,a.PostalCode
+--    ,a.City
+--    ,a.AddressLine1
+--    ,a.AddressLine2
+--FROM HumanResources.Employee AS emp
+--    INNER JOIN Person.Person AS p ON p.BusinessEntityID = emp.BusinessEntityID
+--    INNER JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID
+--    INNER JOIN Person.Address AS a ON a.AddressID= bea.AddressID
+--    INNER JOIN Person.AddressType AS at ON bea.AddressTypeID = at.AddressTypeID
+--WHERE at.Name = 'Home'
+
+
+-- display employess living in the same city
+
+--SELECT
+--     a.FirstName
+--    ,a.LastName
+--    ,a.city
+--    ,b.FirstName
+--    ,b.LastName
+--    ,b.city
+--FROM
+--(
+--SELECT
+--     emp.HireDate
+--    ,emp.LoginID
+--    ,p.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,at.Name
+--    ,a.PostalCode
+--    ,a.City
+--    ,a.AddressLine1
+--    ,a.AddressLine2
+--FROM HumanResources.Employee AS emp
+--    INNER JOIN Person.Person AS p ON p.BusinessEntityID = emp.BusinessEntityID
+--    INNER JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID
+--    INNER JOIN Person.Address AS a ON a.AddressID= bea.AddressID
+--    INNER JOIN Person.AddressType AS at ON bea.AddressTypeID = at.AddressTypeID
+--    WHERE at.Name = 'Home'
+--) AS a
+--JOIN
+--(
+--SELECT
+--     emp.HireDate
+--    ,emp.LoginID
+--    ,p.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,at.Name
+--    ,a.PostalCode
+--    ,a.City
+--    ,a.AddressLine1
+--    ,a.AddressLine2
+--FROM HumanResources.Employee AS emp
+--    INNER JOIN Person.Person AS p ON p.BusinessEntityID = emp.BusinessEntityID
+--    INNER JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID
+--    INNER JOIN Person.Address AS a ON a.AddressID= bea.AddressID
+--    INNER JOIN Person.AddressType AS at ON bea.AddressTypeID = at.AddressTypeID
+--WHERE at.Name = 'Home'
+--) AS b ON a.city = b.city AND a.BusinessEntityID > b.BusinessEntityID
+
+
+---- Podzapytania skorelowane
+
+--USE AdventureWorks2016CTP3
+--GO
+
+----Non corelated subquery
+--SELECT
+--*
+--FROM
+--Production.Product
+--WHERE ProductID IN (SELECT ProductID FROM Sales.SalesOrderDetail WHERE SalesOrderID = 43661)
+
+---- Products cheaper then average in the subcategory
+--SELECT
+--    p1.ProductID, p1.Name, p1.ListPrice, p1.ProductSubcategoryID
+--FROM Production.Product AS p1
+--WHERE
+--    (
+--        SELECT AVG(ListPrice) AS AvgInSubcategory
+--        FROM Production.Product p2
+--        WHERE p2.ProductSubcategoryID = p1.ProductSubcategoryID
+--    ) > p1.ListPrice
+
+
+---- Products not cheaper then average in the subcategory
+--SELECT
+--    p1.ProductID, p1.Name, p1.ListPrice, p1.ProductSubcategoryID
+--    , (
+--        SELECT AVG(ListPrice) AS AvgInSubcategory
+--        FROM Production.Product p2
+--        WHERE p2.ProductSubcategoryID = p1.ProductSubcategoryID
+--    )
+--FROM Production.Product AS p1
+--WHERE
+--    (
+--        SELECT AVG(ListPrice) AS AvgInSubcategory
+--        FROM Production.Product p2
+--        WHERE p2.ProductSubcategoryID = p1.ProductSubcategoryID
+--    ) <= p1.ListPrice
+
+---- Find seller having better results then total result in any of territories
+
+--SELECT
+--    sp.BusinessEntityID, sp.SalesLastYear
+--FROM Sales.SalesPerson AS sp
+--WHERE
+--    (SELECT COUNT(*) FROM Sales.SalesTerritory AS st
+--    WHERE st.SalesLastYear < sp.SalesLastYear) > 0
+
+----Find last order date each product (when was the product last sold?)
+--SELECT
+--    DISTINCT sod1.ProductID, soh1.OrderDate
+--FROM Sales.SalesOrderDetail sod1
+--JOIN Sales.SalesOrderHeader soh1 ON sod1.SalesOrderID = soh1.SalesOrderID
+--WHERE
+--    soh1.OrderDate = (
+--        SELECT MAX (soh2.OrderDate) FROM Sales.SalesOrderHeader soh2
+--        JOIN Sales.SalesOrderDetail sod2 ON sod2.SalesOrderID = soh2.SalesOrderID
+--        WHERE sod2.ProductID = sod1.ProductID
+--        )
+---- if AVG sale for a salesman among other salesman with the same bonus is adequate
+--SELECT
+--    sp1.BusinessEntityID, sp1.SalesLastYear, (SELECT AVG(sp2.SalesLastYear) FROM
+--    Sales.SalesPerson sp2 WHERE sp2.Bonus = sp1.Bonus)
+--FROM Sales.SalesPerson sp1
+--WHERE
+--sp1.SalesLastYear < (SELECT AVG(sp2.SalesLastYear) FROM Sales.SalesPerson sp2 WHERE
+--sp2.Bonus = sp1.Bonus)
+
+--USE AdventureWorks2016CTP3
+--GO
+
+---- How many products were sold at least once
+--SELECT
+--    COUNT(*)
+--FROM Production.Product AS p
+--WHERE
+--    EXISTS (SELECT * FROM Sales.SalesOrderDetail AS sod WHERE sod.ProductID = p.ProductID)
+
+---- How many products were never sold
+--SELECT
+--    COUNT(*)
+--FROM Production.Product AS p
+--WHERE
+--    NOT EXISTS (SELECT * FROM Sales.SalesOrderDetail AS sod WHERE sod.ProductID = p.ProductID)
+
+---- Let's check mathematics
+--SELECT 266 + 238
+
+---- Are there any products, that were never available in Special Offer
+--SELECT
+--    *
+--FROM Production.Product AS p
+--WHERE
+--    NOT EXISTS (SELECT * FROM Sales.SpecialOfferProduct AS sod WHERE sod.ProductID = p.ProductID)
+
+
+---- Display products, that were available at least once in any Special Offer
+--SELECT
+--    *
+--FROM Production.Product AS p
+--WHERE
+--    EXISTS (SELECT * FROM Sales.SpecialOfferProduct AS sod WHERE sod.ProductID = p.ProductID)
+
+---- Products, that will be produced in longer time then each non-painted product
+--SELECT
+--    *
+--FROM Production.Product AS p1
+--WHERE
+--    p1.DaysToManufacture > (SELECT MAX(DaysToManufacture) FROM Production.Product WHERE Color is NULL)
+
+----
+--SELECT
+--    *
+--FROM Production.Product AS p1
+--WHERE
+--    p1.DaysToManufacture > ALL (SELECT DaysToManufacture FROM Production.Product WHERE Color is NULL)
+---- 104
+
+---- How many days are required to produce a non painted product
+--SELECT DISTINCT DaysToManufacture FROM Production.Product WHERE Color IS NULL
+
+---- Which products need more days then non painted products
+
+--SELECT
+--    *
+--FROM Production.Product AS p1
+--WHERE
+--    p1.DaysToManufacture <= ALL (SELECT DaysToManufacture FROM Production.Product WHERE Color is NULL)
+
+---- which products can be produced in not longer time then a non painted products
+--SELECT
+--    *
+--FROM Production.Product AS p1
+--WHERE
+--    p1.DaysToManufacture <= SOME (SELECT DaysToManufacture FROM Production.Product WHERE Color IS NULL)
+
+--SELECT
+--    *
+--FROM Production.Product AS p1
+--WHERE
+--    p1.DaysToManufacture <= ANY (SELECT DaysToManufacture FROM Production.Product WHERE Color IS NULL)
+
+---------------------------------------------------------------------------------------------
+--Title: Zastępowanie podzapytań przez JOIN
+
+--USE AdventureWorks2016CTP3
+--GO
+
+---- Which products where ordered in July? - subquery
+--SELECT
+--    DISTINCT
+--    p.ProductID
+--    ,p.Name
+--FROM Production.Product AS p
+--WHERE p.ProductID IN
+--(
+--    SELECT
+--        DISTINCT sod.ProductID
+--    FROM Sales.SalesOrderDetail AS sod
+--    JOIN Sales.SalesOrderHeader AS soh ON soh.SalesOrderID = sod.SalesOrderID
+--    WHERE
+--        soh.OrderDate BETWEEN '20130701' AND '20130731'
+--)
+
+
+---- Which products where ordered in July - JOIN
+--SELECT
+--    DISTINCT
+--    p.ProductID
+--    ,p.Name
+--FROM Production.Product AS p
+--    JOIN Sales.SalesOrderDetail AS sod ON sod.ProductID = p.ProductID
+--    JOIN Sales.SalesOrderHeader AS soh ON soh.SalesOrderID = sod.SalesOrderID
+--WHERE
+--        soh.OrderDate BETWEEN '20130701' AND '20130731'
+
+
+
+---- Which products where NOT ordered in July? - subquery
+--SELECT
+--    DISTINCT
+--    p.ProductID
+--    ,p.Name
+--FROM Production.Product AS p
+--WHERE p.ProductID NOT IN
+--(
+--    SELECT
+--        DISTINCT sod.ProductID
+--    FROM Sales.SalesOrderDetail AS sod
+--    JOIN Sales.SalesOrderHeader AS soh ON soh.SalesOrderID = sod.SalesOrderID
+--    WHERE
+--        soh.OrderDate BETWEEN '20130701' AND '20130731'
+--)
+
+
+---- The same with join and... subquery
+--SELECT
+--*
+--FROM Production.Product AS p
+--LEFT OUTER JOIN
+--(
+--    SELECT
+--        DISTINCT sod.ProductID
+--    FROM Sales.SalesOrderDetail AS sod
+--    JOIN Sales.SalesOrderHeader AS soh ON soh.SalesOrderID = sod.SalesOrderID
+--    WHERE
+--        soh.OrderDate BETWEEN '20130701' AND '20130731'
+--) sold ON p.productID = sold.ProductID
+--WHERE sold.ProductID IS NULL
+
+-----------------------------------------------------------------------------------------------
+----Title: Zastępowanie podzapytań przez JOIN
+
+--USE AdventureWorks2016CTP3
+--GO
+
+---- Union on 2 subsets
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--FROM Sales.Customer AS c
+--UNION
+--SELECT
+--     v.BusinessEntityID
+--    ,v.AccountNumber
+--FROM Purchasing.Vendor AS v
+
+---- Adding more columns - error
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+--UNION
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name
+--FROM Purchasing.Vendor AS v
+
+---- Adding more columns - correct way
+
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+--UNION
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name
+--     ,''
+--FROM Purchasing.Vendor AS v
+
+---- Change the order of subqueries
+
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name
+--     ,''
+--FROM Purchasing.Vendor AS v
+--UNION
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+
+
+---- Change the order of subqueries
+
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name
+--     ,''
+--FROM Purchasing.Vendor AS v
+--UNION
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+
+----allasing columns
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name AS "Name or LastName"
+--     ,'' AS "FirstName"
+--FROM Purchasing.Vendor AS v
+--UNION
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+
+----ordering rows
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name AS "Name or LastName"
+--     ,'' AS "FirstName"
+--FROM Purchasing.Vendor AS v
+--UNION
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+--ORDER BY "Name or LastName" DESC
+
+----ordering - error
+--USE AdventureWorks2016CTP3
+--GO
+
+--SELECT
+--      v.BusinessEntityID
+--     ,v.AccountNumber
+--     ,v.Name AS "Name or LastName"
+--     ,'' AS "FirstName"
+--FROM Purchasing.Vendor AS v
+--ORDER BY "Name or LastName" DESC
+--UNION
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.Customer AS c
+--LEFT JOIN Person.Person AS p ON c.CustomerID = p.BusinessEntityID
+--ORDER BY "Name or LastName" DESC
+
+
+---- Union on 3 subsets
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--FROM Sales.Customer AS c
+--UNION
+--SELECT
+--     v.BusinessEntityID
+--    ,v.AccountNumber
+--FROM Purchasing.Vendor AS v
+--UNION
+--SELECT
+--     s.BusinessEntityID
+--    ,s.Name
+--FROM Sales.Store AS s
+
+
+---- Union on 3 subsets with more columns
+--SELECT
+--     c.CustomerID
+--    ,c.AccountNumber
+--    ,a.City
+--    ,a.PostalCode
+--    ,a.AddressLine1
+--FROM Sales.Customer AS c
+--JOIN Person.BusinessEntityAddress ba ON ba.BusinessEntityID = c.CustomerID
+--JOIN Person.Address AS a ON a.AddressID = ba.AddressID
+--UNION
+--SELECT
+--     v.BusinessEntityID
+--    ,v.AccountNumber
+--    ,a.City
+--    ,a.PostalCode
+--    ,a.AddressLine1
+--FROM Purchasing.Vendor AS v
+--JOIN Person.BusinessEntityAddress ba ON ba.BusinessEntityID = v.BusinessEntityID
+--JOIN Person.Address AS a ON a.AddressID = ba.AddressID
+--UNION
+--SELECT
+--     s.BusinessEntityID
+--    ,s.Name
+--    ,a.City
+--    ,a.PostalCode
+--    ,a.AddressLine1
+--FROM Sales.Store AS s
+--JOIN Person.BusinessEntityAddress ba ON ba.BusinessEntityID = s.BusinessEntityID
+--JOIN Person.Address AS a ON a.AddressID = ba.AddressID
+
+
+
+---- Union in subquery
+--SELECT
+--     sub.id
+--    ,sub.AccountNumber
+--    ,a.City
+--    ,a.PostalCode
+--    ,a.AddressLine1
+--FROM
+--(
+--    SELECT
+--         c.CustomerID AS Id
+--        ,c.AccountNumber
+--    FROM Sales.Customer AS c
+--    UNION
+--    SELECT
+--         v.BusinessEntityID AS Id
+--        ,v.AccountNumber
+--    FROM Purchasing.Vendor AS v
+--    UNION
+--    SELECT
+--         s.BusinessEntityID
+--        ,s.Name
+--    FROM Sales.Store AS s
+--) AS sub
+--JOIN Person.BusinessEntityAddress ba ON ba.BusinessEntityID = sub.Id
+--JOIN Person.Address AS a ON a.AddressID = ba.AddressID
+
+-----------------------------------------------------------------------------------------------
+----Title: Operator Union ALL, Intersect, except
+
+-- UNION AS USUAL...
+--SELECT
+--    e.BusinessEntityID
+--FROM HumanResources.Employee AS e
+--UNION
+--SELECT
+--    v.BusinessEntityID
+--FROM Sales.SalesPerson AS v
+
+
+---- UNION ALL
+--SELECT
+--    e.BusinessEntityID
+--FROM HumanResources.Employee AS e
+--UNION ALL
+--SELECT
+--    v.BusinessEntityID
+--FROM Sales.SalesPerson AS v
+--ORDER BY e.BusinessEntityID
+
+---- UNION ALL with additional columns
+--SELECT
+--     e.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--FROM HumanResources.Employee AS e
+--JOIN Person.Person AS p ON p.BusinessEntityID = e.BusinessEntityID
+--UNION ALL
+--SELECT
+--     s.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--FROM Sales.SalesPerson AS s
+--JOIN Person.Person AS p ON p.BusinessEntityID = s.BusinessEntityID
+--ORDER BY e.BusinessEntityID
+
+---- Normal union (UNION) with additional columns
+
+--SELECT
+--     e.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,'EMPLOYESS' AS Source
+--FROM HumanResources.Employee AS e
+--JOIN Person.Person AS p ON p.BusinessEntityID = e.BusinessEntityID
+--UNION
+--SELECT
+--     s.BusinessEntityID
+--    ,p.LastName
+--    ,p.FirstName
+--    ,'SALESMAN' AS Source
+--FROM Sales.SalesPerson AS s
+--JOIN Person.Person AS p ON p.BusinessEntityID = s.BusinessEntityID
+--ORDER BY e.BusinessEntityID]
+
+
+
+---- Products from vendor 1680, that are/were included in the Special Offer
+
+--SELECT
+--    ProductID
+--FROM Purchasing.ProductVendor
+--WHERE BusinessEntityID = 1680
+--INTERSECT
+--SELECT
+--    ProductID
+--FROM Sales.SpecialOfferProduct
+
+---- Products from vendor 1680, that aren't/were't included in the Special Offer
+
+--SELECT
+--    ProductID
+--FROM Purchasing.ProductVendor
+--WHERE BusinessEntityID = 1680
+--EXCEPT
+--SELECT
+--    ProductID
+--FROM Sales.SpecialOfferProduct
+
+
+-----------------------------------------------------------------------------------------------
+--#3 SQL SERVER Programowanie typy zaawansowane, XML
+-----------------------------------------------------------------------------------------------
+----Title: Zmienne w języku Transact SQL [TSQL]
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--DECLARE
+--     @i INT=332
+--    ,@j INT=505
+
+--SELECT
+--*
+--FROM Production.Product
+--WHERE ProductID = @i OR @j = ProductID
+--GO
+
+
+
+--DECLARE
+--     @i INT=332
+--    ,@color VARCHAR(50)
+
+--SELECT
+--@color = Color
+--FROM Production.Product
+--WHERE ProductID = @i
+--PRINT @Color
+--GO
+
+
+--DECLARE
+--     @i INT=332
+--    ,@color VARCHAR(50)
+
+--SELECT
+--     @color = Color
+--FROM Production.Product
+--WHERE ProductID = @i
+
+--SELECT
+--     ProductID
+--    ,Name
+--    ,Color
+--FROM Production.Product
+--WHERE Color = @Color
+
+--GO
+
+-----------------------------------------------------------------------------------------------
+----Title: Instrukcja warunkowa IF cz.1
+
+--DECLARE @Date DATE = '20160523'  --Monday
+
+--IF DATEPART(WEEKDAY, @Date) = 1 OR DATEPART(weekday, @Date)=7 --Sunday OR Saturday
+--    BEGIN
+--        PRINT 'It is a weekend :)'
+--        ... do something more
+--    END
+--ELSE
+--    BEGIN
+--        PRINT 'It is a working day :('
+--        ... do something more
+--        END
+
+-----------------------------------------------------------------------------------------------
+----Title: Instrukcja warunkowa IF cz.1
+
+--USE AdventureWorks2016CTP3
+--GO
+
+--DECLARE @CourseDate DATE = '20160519'  --Thursday
+
+--SET @CourseDate = DATEADD(d, -1, @CourseDate)
+--PRINT 'Yesterday' +CAST(@CourseDate AS VARCHAR) + ' ' + datename(weekday, @CourseDate)+' - '+CAST(DATEPART(weekday, @CourseDate) AS VARCHAR)
+
+--IF DATEPART(weekday, @CourseDate) = 1 -- Sunday
+--BEGIN
+--    PRINT 'It is Sunday. Not a working day'
+--    SET @CourseDate = DATEADD(d, -1, @CourseDate)
+--    PRINT 'Value is ' +CAST(@CourseDate AS VARCHAR)+ ' ' + datename(weekday, @CourseDate)+' - '+CAST(DATEPART(weekday, @CourseDate) AS VARCHAR)
+--END
+
+--IF DATEPART(weekday, @CourseDate) = 7 --Saturday
+--BEGIN
+--    PRINT 'It is Sunday. Not a working day'
+--    SET @CourseDate = DATEADD(d, -1, @CourseDate)
+--    PRINT 'Value is ' +CAST(@CourseDate AS VARCHAR) + ' ' + datename(weekday, @CourseDate)+' - '+CAST(DATEPART(weekday, @CourseDate) AS VARCHAR)
+--END
+
+--PRINT 'RESULT IS' +CAST(@CourseDate AS VARCHAR) + ' ' + datename(weekday, @CourseDate)+' - '+CAST(DATEPART(weekday, @CourseDate) AS VARCHAR)
+
+
+-----------------------------------------------------------------------------------------------
+----Title: Instrukcja warunkowa IF w pracy administratora bazy danych
+
+--IF OBJECT_ID('tempdb..#tab') IS NOT NULL
+--BEGIN
+--    PRINT 'DROPPING #tab TABLE'
+--    DROP TABLE #tab
+--END
+
+--CREATE TABLE #tab (id int)
+
+--INSERT #tab VALUES (1)
+
+-----------------------------------------------------------------------------------------------
+----Title: Pętla While
+
+--CREATE TABLE TestWhile (id INT)
+
+---- SET NOCOUNT ON    --Wyłącza komunikaty typu (1 row affected)
+
+--DECLARE @i INT=1
+
+--WHILE @i <1000
+--BEGIN
+--    INSERT TestWhile VALUES (@i)
+--    SET @i+=1
+--END
+
+------
+--DELETE TOP (13) FROM TestWhile
+--WHILE @@ROWCOUNT>0
+
+
+-----------------------------------------------------------------------------------------------
+----Title: Pętla While w praktyce
+
+--BEGIN
+--    INSERT TestWhile VALUES (@i)
+--    SET @i+=1
+--END
+--SELECT * FROM TestWhile
+------
+--SET NOCOUNT OFF
+--DELETE TOP (13) FROM TestWhile
+--WHILE @@ROWCOUNT>0
+--BEGIN
+--    DELETE TOP (13) FROM TestWHile
+--END
+
+----
+--DECLARE @StartTime DATETIME = GETDATE()
+
+--DELETE TOP (13) FROM TestWhile
+--WHILE @@ROWCOUNT>0
+--BEGIN
+--    WAITFOR DELAY '00:00:01'
+--    IF DATEADD(S,10,@StartTime) < GETDATE()
+--    BEGIN
+--        PRINT 'Breaking loop - time exceeded...'
+--        BREAK
+--    END
+--    DELETE TOP (13) FROM TestWhile
+--END
+----
+--CREATE TABLE TestWhile (id INT)
+
+--SET NOCOUNT ON
+
+--DECLARE @i INT=1
+
+--WHILE @i<1000
+--BEGIN
+--    INSERT TestWhile VALUES (@i)
+--    SET @i+=1
+--END
+--SELECT * FROM TestWhile
+------
+--    --PRINT 'DROPPING TestWhile TABLE'
+--    --DROP TABLE TestWhile
+------
+--SET NOCOUNT OFF
+--DELETE TOP (13) FROM TestWhile
+--WHILE @@ROWCOUNT>0
+--BEGIN
+--    DELETE TOP (13) FROM TestWhile
+--END
+------
+--DECLARE @StartTime DATETIME = GETDATE()
+
+--DELETE TOP (13) FROM TestWhile
+--WHILE @@ROWCOUNT>0
+--BEGIN
+--    WAITFOR DELAY '00:00:01'
+--    IF DATEADD(s, 10,@StartTime) < GETDATE()
+--    BEGIN
+--        PRINT 'Breaking loop - time exceeded...'
+--        BREAK
+--    END
+--    DELETE TOP (13) FROM TestWhile
+--END
+
+-----------------------------------------------------------------------------------------------
+----Title: Typ ROWVERSION
+
+--USE tempdb
+--GO
+
+--CREATE TABLE Test
+--(
+--    Name NVARCHAR(30)
+--    ,Ver ROWVERSION
+--)
+
+--INSERT Test(Name) VALUES ('Start')
+--SELECT * FROM Test
+--INSERT Test(Name) VALUES ('Second')
+--SELECT * FROM Test
+--UPDATE Test SET Name = 'First' WHERE Name = 'Start'
+--SELECT * FROM Test
+
+--CREATE TABLE Test2
+--(
+--    Name NVARCHAR(30)
+--    ,Ver ROWVERSION
+--)
+
+--INSERT Test2(Name) VALUES ('Start')
+--SELECT * FROM Test2
+
+--INSERT Test(Name) VALUES ('Third')
+--SELECT * FROM Test
+
+--SELECT * FROM Test WHERE [Name] = 'First'
+--UPDATE Test SET [Name] = 'FIRST' WHERE [Name] = 'First' AND Ver = 0x00000000000007D3
+--SELECT @@ROWCOUNT
+
+----PRINT 'DROPPING Test TABLE'
+--    DROP TABLE Test2
+
+-----------------------------------------------------------------------------------------------
+----Title: Typ UNIQUEIDENTIFIER
+
+--USE tempdb
+--GO
+
+--CREATE TABLE TestGUID
+--(
+--    ID uniqueidentifier
+--    ,Name NVARCHAR(100)
+--)
+
+--INSERT TestGUID VALUES (NEWID(), 'One'), (NEWID(), 'Two'), (NEWID(), 'Three')
+
+--SELECT * FROM TestGUID ORDER BY ID
+
+--CREATE TABLE TestGUIDSequential
+--(
+--    ID uniqueidentifier DEFAULT NEWSEQUENTIALID()
+--    , Name NVARCHAR(100)
+--)
+
+--INSERT TestGUIDSequential(Name) VALUES ('One'),('Two'),('Three')
+
+--SELECT * FROM TestGUIDSequential ORDER BY ID
+
+--DECLARE @u UNIQUEIDENTIFIER = NEWID()
+--SELECT @u, CAST(@u AS VARCHAR(100)) AS 'char'
+
+-----------------------------------------------------------------------------------------------
+----Title: Co to jest Collation?
+
+--USE master
+--GO
+--SELECT SERVERPROPERTY('COLLATION')
+--GO
+--SELECT DATABASEPROPERTYEX ('AdventureWorks2016CTP3', 'COLLATION')
+--GO
+--USE tempdb
+--GO
+
+--CREATE TABLE TestCollation
+--(text1 NVARCHAR(100) COLLATE Latin1_General_CI_AS,
+--text2 NVARCHAR(100) COLLATE Latin1_General_CS_AS)
+--GO
+
+--INSERT TestCollation VALUES ('Berlin', 'BERLIN')
+--INSERT TestCollation VALUES ('San Francisco', 'SAN FRANCISCO')
+--GO
+
+--SELECT * FROM TestCollation WHERE text1 = 'Berlin'
+--SELECT * FROM TestCollation WHERE text1 = 'BERLIN'
+--GO
+
+
+--SELECT * FROM TestCollation WHERE text2 = 'Berlin'
+--SELECT * FROM TestCollation WHERE text2 = 'BERLIN'
+--GO
+----error
+--SELECT * FROM TestCollation WHERE text1 = text2
+--GO
+
+--SELECT * FROM TestCollation WHERE text1 = text2 COLLATE Latin1_General_CI_AS
+--SELECT * FROM TestCollation WHERE text1 = text2 COLLATE Latin1_General_CS_AS
+--GO
+
+--SELECT * FROM sys.fn_helpcollations()
+--GO
+
+
+-----------------------------------------------------------------------------------------------
+----Title: Collation - literał N przed stałymi napisowymi
+
+--CREATE DATABASE Test_NO_PL COLLATE Latin1_General_CI_AS
+--GO
+--USE Test_NO_PL
+--GO
+--CREATE TABLE Test(txt NVARCHAR(100))
+--GO
+
+--INSERT Test VALUES (N'A'),(N'Ą'),(N'B'),(N'C'),(N'Ć'),(N'D')
+--SELECT * FROM Test ORDER BY txt
+--GO
+--TRUNCATE TABLE Test
+--GO
+
+--INSERT Test VALUES ('A'),('Ą'),('B'),('C'),('Ć'),('D')
+--SELECT * FROM Test ORDER BY txt
+--GO
+--TRUNCATE TABLE Test
+--GO
+
+--USE master
+--GO
+--CREATE DATABASE Test_PL COLLATE Polish_CI_AS
+--GO
+
+--USE Test_PL
+--GO
+--CREATE TABLE Test(txt NVARCHAR(100))
+--GO
+
+--INSERT Test VALUES (N'A'),(N'Ą'),(N'B'),(N'C'),(N'Ć'),(N'D')
+--SELECT * FROM Test ORDER BY txt
+--GO
+--TRUNCATE TABLE Test
+--GO
+
+--INSERT Test VALUES ('A'),('Ą'),('B'),('C'),('Ć'),('D')
+--SELECT * FROM Test ORDER BY txt
+--GO
+
+--TRUNCATE TABLE Test
+--GO
+--USE master
+--GO
+
+--DROP DATABASE Test_NO_PL
+--GO
+--DROP DATABASE Test_PL
+--GO
+
+-----------------------------------------------------------------------------------------------
+----Title: Typ hierarchiczny - wprowadzanie danych
+
+--https://msdn.microsoft.com/en-us/library/bb677173.aspx
+--https://en.wikipedia.org/wiki/United_States_Navy
+--GO
+
+--USE tempdb
+--GO
+--CREATE TABLE dbo.EmployeeOrg
+--(
+--    OrgNode  PRIMARY KEY CLUSTERED,
+--    OrgLevel AS OrgNode.GetLevel(),
+--    EmployeeID int UNIQUE NOT NULL,
+--    EmpName VARCHAR(20) NOT NULL,
+--    Title VARCHAR(20) NULL
+--);
+
+---- index for breadth first queries
+--CREATE UNIQUE INDEX EmployeeOrgNc1
+--ON dbo.EmployeeOrg(OrgLevel, OrgNode);
+--GO
+
+--INSERT dbo.EmployeeOrg (OrgNode, EmployeeID, EmpName, Title)
+--VALUES (hierarchyid::GetRoot(), 6, 'David', 'Fleet Admiral');
+--GO
+
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg;
+
+---- Insert a child - not only parent is important, also order from left
+--DECLARE @Manager hierarchyid
+--SELECT @Manager = hierarchyid::GetRoot()
+--FROM dbo.EmployeeOrg;
+
+----Problem, Error! Msg 137, Level 15, State 2, Line 2562
+----Must declare the scalar variable "@Manager".
+
+--INSERT dbo.EmployeeOrg (OrgNode, EmployeeID, EmpName, Title)
+--VALUES
+--(@Manager.GetDescendant(NULL, NULL), 46, 'John', 'Admiral 1');
+
+----result
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg;
+--GO
+
+--USE tempdb
+--GO
+--CREATE PROC AppEmp(@mgrid int, @empid int, @e_name varchar(20), @title varchar(20))
+--AS
+--BEGIN
+--    DECLARE @mOrgNode hierarchyid, @lc hierarchyid
+--    SELECT @mOrgNode = OrgNode
+--    FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = @mgrid
+--    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
+
+--    select @mOrgNode
+--    BEGIN TRANSACTION
+--        SELECT @lc = MAX(OrgNode)
+--        FROM dbo.EmployeeOrg
+--        WHERE OrgNode.GetAncestor(1) = @mOrgNode;
+
+--        INSERT dbo.EmployeeOrg (OrgNode, EmployeeID, EmpName, Title)
+--        VALUES (@mOrgNode.GetDescendant(@lc, NULL), @empid, @e_name, @title)
+--    COMMIT
+--END;
+
+--EXEC AppEmp 6, 271, 'Steven',    'Admiral 2';
+--EXEC AppEmp 6, 119, 'Ken',    'Admiral 3';
+--EXEC AppEmp 46, 269, 'Micheal',    'Vice Admiral 1';
+--EXEC AppEmp 271, 272, 'Greg',    'Vice Admiral 2';
+
+
+
+----result
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg;
+--GO
+
+---- display children of employee 46
+--DECLARE @CurrentEmployee hierarchyid
+
+--SELECT @CurrentEmployee = OrgNode
+--FROM dbo.EmployeeOrg
+--WHERE EmployeeID = 46;
+
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg
+--WHERE OrgNode.IsDescendantOf(@CurrentEmployee) = 1;
+--GO
+
+----
+--DECLARE @CurrentEmployee hierarchyid
+
+--SELECT @CurrentEmployee = OrgNode
+--FROM dbo.EmployeeOrg
+--WHERE EmployeeID = 46;
+
+--SELECT OrgNode.ToString() AS Text_OrgNode,*
+--FROM dbo.EmployeeOrg
+--WHERE OrgNode.GetAncestor(1) = @CurrentEmployee
+--GO
+
+----
+--DECLARE @CurrentEmployee hierarchyid
+
+--SELECT @CurrentEmployee = OrgNode
+--FROM dbo.EmployeeOrg
+--WHERE EmployeeID = 6;
+
+--SELECT OrgNode.ToString() AS Text_OrgNode, *
+--FROM dbo.EmployeeOrg
+--WHERE OrgNode.GetAncestor(2) = @CurrentEmployee
+--GO
+
+--USE tempdb
+--GO
+---- move to new location
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg;
+--GO
+
+--DECLARE @CurrentEmployee hierarchyid, @OldParent hierarchyid, @NewParent hierarchyid
+--SELECT @CurrentEmployee = OrgNode FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = 269;
+--SELECT @OldParent = OrgNode FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = 46;
+--SELECT @NewParent = OrgNode FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = 119;
+
+--UPDATE dbo.EmployeeOrg
+--SET OrgNode = @CurrentEmployee.GetReparentedValue(@OldParent, @NewParent)
+--WHERE OrgNode = @CurrentEmployee;
+--GO
+
+----result
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg;
+--GO
+
+----dodanie kapitana
+--EXEC AddEmp 269, 291, 'Kevin', 'Capitan' ;
+--GO
+
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg;
+--GO
+
+----move substree
+
+--DECLARE @CurrentEmployee hierarchyid, @OldParent hierarchyid, @NewParent hierarchyid
+--SELECT @CurrentEmployee = OrgNode FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = 269;
+--SELECT @OldParent = OrgNode FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = 119;
+--SELECT @NewParent = OrgNode FROM dbo.EmployeeOrg
+--    WHERE EmployeeID = 46;
+
+
+--UPDATE dbo.EmployeeOrg
+--SET OrgNode = @CurrentEmployee.GetReparentedValue(@OldParent, @NewParent)
+--WHERE OrgNode = @CurrentEmployee;
+--GO
+
+---- get children of 46 again
+--DECLARE @CurrentEmployee hierarchyid
+
+--SELECT @CurrentEmployee = OrgNode
+--FROM dbo.EmployeeOrg
+--WHERE EmployeeID = 46;
+
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg
+--WHERE OrgNode.IsDescendantOf(@CurrentEmployee)  = 1;
+--GO
+
+---- get children of 119 again
+--DECLARE @CurrentEmployee hierarchyid
+
+--SELECT @CurrentEmployee = OrgNode
+--FROM dbo.EmployeeOrg
+--WHERE EmployeeID = 119;
+
+--SELECT OrgNode.ToString() AS Text_OrgNode,
+--OrgNode, OrgLevel, EmployeeID, EmpName, Title
+--FROM dbo.EmployeeOrg
+--WHERE OrgNode.IsDescendantOf(@CurrentEmployee)  = 1;
+--GO
+
+
+-----------------------------------------------------------------------------------------------
+----Title: Typ geometryczny - wprowadzanie
+
+--https://msdn.microsoft.com/en-us/library/bb964711.aspx
+
+----Creating geometrical shapes
+----https://msdn.microsoft.com/en-us/library/bb933894.aspx
+
+----Just a point
+--DECLARE @g geometry
+--SET @g = geometry::STGeomFromText('POINT (3 4 )', 0);
+--SELECT @g
+--SELECT @g.ToString()
+--GO
+---- Point with elevation and measure
+------ extended method sshttps://msdn.microsoft.com/en-us/library/bb933005.aspx
+
+--DECLARE @g geometry;
+--SET @g = geometry::Parse('POINT (3 4 7 2.5)');
+--SELECT @g
+--SELECT @g.ToString()
+--SELECT @g.STX AS STX , @g.STY AS STY, @g.Z AS Z, @g.M AS M
+--GO
+
+---- Linesting
+--DECLARE @g geometry = 'LINESTRING(-1 0, 2 3, 1 -1, 0 3, 3 0, -1 0)';
+--SELECT @g
+--SELECT @g.ToString()
+--GO
+
+---- Line string methods - validating the WKT (well known text)
+--DECLARE @g geometry
+--SET @g = geometry::STGeomFromText('LINESTRING(3 1, 7 1, 6 1)',0);
+--IF @g.STIsValid() = 1
+--    BEGIN
+--        SELECT @g.ToString() + 'is a valid LineString';
+--        SELECT @g
+--    END
+--ELSE
+--    BEGIN
+--        SELECT @g.ToString() + 'is a valid LineString';
+--        SET @g = @g.MakeValid();
+--        SELECT @g.ToString() + ' is a valid';
+--        SELECT @g
+--    END
+--GO
+
+---- Definicja krzywej
+--DECLARE @g geometry = 'CIRCULARSTRING(1 1, 2 0, -1 1)';
+--SELECT @g
+--GO
+--DECLARE @g geometry = 'CIRCULARSTRING(1 1, 1 2, -1 1)';
+--SELECT @g
+--GO
+--DECLARE @g geometry = 'CIRCULARSTRING(0 1, 1.5 2, 0 4, 1 5,0 6,-1 5, 0 4, -1.5 2, 0 1)';
+--SELECT @g
+--GO
+--DECLARE @g geometry = 'COMPOUNDCURVE(CIRCULARSTRING(1 0, 0 1, -1 0), (-1 0, 2 2))';
+--SELECT @g
+--GO
+
+--DECLARE @g geometry;
+--SET @g = geometry::Parse('POLYGON(1 0, 0 1, 1 2, 2 1, 1 0), (2 8, 1 1, 2 2, 3 1, 2 0))');
+--SELECT @g
+--SET @g = @g.MakeValid();
+--SELECT @g.ToString();
+--GO
+
+--DECLARE @g geometry = 'CURVEPOLYGON(CIRCULARSTRING(1 3, 5 4, 4 7, 7 3, 1 3))';
+--SELECT @g
+--GO
+
+--DECLARE @g geometry
+--SET @g = geometry::STGeomFromText('MULTIPOINT((2.5 3.5), (6.5 7.5))', 23);
+--SELECT @g
+--GO
+
+--DECLARE @g geometry = 'MULTILINESTRING((0 0, 1 2, 1 5, 0 3),(1 6, 1 5, 2 3),(2 0, 1 2))';
+--SELECT @g
+--GO
+
+
+--DECLARE @g geometry = 'GEOMETRYCOLLECTION(MULTILINESTRING((0 0, 1 2, 1 5, 0 3),(1 6, 1 5, 2 3),(2 0, 1 2)),
+--                        POLYGON((3 0, 3 -4, -1 -4, -1 0, 3 0)),
+--                        CIRCULARSTRING(1 6, 2 7, 1 8, 0 7, 1 6))';
+--SELECT @g
+--GO
+
+-------------------------------------------------------------------------------------------------
+------Title: Typ geometryczny - wprowadzanie
+
+----Standart OCG
+--https://msdn.microsoft.com/en-us/library/bb933960.aspx
+
+----STANDART METHODS
+
+--DECLARE @g geometry = 'CURVEPOLYGON(CIRCULARSTRING(1 3, 5 4, 4 7, 7 3, 1 3))';
+--SELECT @g
+--SELECT @g.STArea()
+--GO
+
+--DECLARE @g geometry
+--SET @g = geometry::STGeomFromText('POLYGON(0 0, 3 0, 3 3, 0 3, 0 0), (2 2, 2 1, 1 1, 1 2, 2 2))', 0);
+--SELECT @g
+--SELECT @g.STArea()
+--GO
+-------------------------------------------------------------------------------------------------
+------Title: START SQL & Database Design A-Z™: Learn MS SQL Server + Postgres
+--SELECT product_name, company, tags, timely_response
+--FROM consumer_complaints
+--WHERE tags = 'Servicemember' AND timely_response = 'Yes'
+
+
+
+-------------------------------------------------------------------------------------------------
+------Title: END SQL & Database Design A-Z™: Learn MS SQL Server + Postgres
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+------Title: Tworzenie bazy danych Rowery:
+
+-- Uwagi:
+-- Nie tworzymy nazw tabel w liczbie mnogiej
+-- KAŻDA tabla powinna mieć PRIMARY KEY, czyli: CategoryId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+
+CREATE DATABASE DatabaseBikes1
+
+USE DatabaseBikes1
+GO
+
+INSERT INTO Manufacturer VALUES
+('ACCENT'),('ALPINA'),
+('AUTHOR'),('BBF'),
+('BERGAMONT'),('BH'),
+('BOTTECCHIA'),('BREEZER'),
+('BULLS'),('CHECKER PIG'),
+('CTM'),('DAHON'),
+('DARTMOOR'),('DEVRON'),
+('ECOBIKE'),('ELECTRA'),
+('FOCUS'),('FRUGAL'),
+('FUJI'),('GEOBIKE'),
+('GERLAND'),('GT'),
+('HAIBIKE'),('HERCULES'),
+('IMPULS'),('JOHNNY LOCO'),
+('KALKHOFF'),('KELLYS'),
+('KETTLER'),('KROSS'),
+('LE GRAND'),('LEADER FOX'),
+('LOVELEC'),('MAXIM'),
+('MERIDA'),('MONGOOSE'),
+('PANTHER'),('PEGASUS'),
+('PFIFF'),('PROPHETE'),
+('ROMET'),('SCHWINN'),
+('SE BIKES'),('SINUS'),
+('SPITZING'),('STRIDA'),
+('TRYBECO'),('UNIVEGA'),
+('VIVA'),('WINORA');
+
+INSERT INTO Category VALUES
+('MTB/Górskie'),
+('Szosowe'),
+('Miejski'),
+('trekkingowy'),
+('Fitness'),
+('elektryczny'),
+('Fatbike'),
+('BMX'),
+('Dirt/Street'),
+('Ostre koło/Single'),
+('Rowery składane'),
+('Beach cruiser'),
+('Tandem'),
+('cargo'),
+('poziomy');
+
+INSERT INTO Price VALUES
+('1','6499'),
+('2','5299'),
+('3','11499'),
+('4','8499'),
+('5','5599'),
+('6','39999'),
+('7','20999'),
+('8','14499 '),
+('9','13999'),
+('10','10999'),
+('11','11999'),
+('12','7699'),
+('13','5199'),
+('14','5899'),
+('15','5199');
+
+INSERT INTO Product VALUES
+('1','2','ALLTOUR','6499'),
+('1','3','ANTHEM','5299'),
+('1','4','ANYROAD','11499'),
+('1','5','ANYTOUR','8499'),
+('1','6','ALLTO','5599'),
+('1','7','ANTH','39999'),
+('1','8','AYROAD','20999'),
+('1','9','ANYUR','14499 '),
+('1','1','ALTOUR','13999'),
+('2','1','HEM','10999'),
+('3','1','ROAD','11999'),
+('4','1','TOUR','7699'),
+('5','1','ROMT','5199');
+
+
+INSERT INTO Customer VALUES
+('Kevin', 'Brown', '7484 Roundtree Drive'),
+('Kevin', 'Ulgo', '4566 Roundtree Drive'),
+('David', 'Lugo', '4353 Scenic Avenue'),
+( 'Andrew', 'Hill', '6387 Scenic Avenue'),
+('Nancy', 'Wilson', '6387 Scenic Avenue'),
+( 'Frank', 'Miller', '5724 Victory Lane'),
+('Bob', 'Zwilling', '9228 Via Del Sol');
+
+INSERT INTO Warehouse VALUES
+('','1','1','3',GetDate()),
+('1','1','1','3',GetDate()),
+('1','1','1','5',GetDate()),
+('2','1','2','7',GetDate()),
+('3','3','3','6',GetDate()),
+('4','4','4','7',GetDate()),
+('5','3','5','10',GetDate()),
+('6','6','6','12',GetDate()),
+('7','7','7','45',GetDate()),
+('8','8','8','2',GetDate()),
+('9','9','9','8',GetDate());
+
+CREATE TABLE Category
+(
+     CategoryId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    CategoryName VARCHAR(50)
+)
+
+CREATE TABLE Manufacturer
+(
+    ManufacturerId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    ManufacturerName VARCHAR(50)
+)
+
+CREATE TABLE Product
+(
+    ProductId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    ManufacturerId INT,
+    CategoryId INT,
+    ProductName VARCHAR(50),
+    Price MONEY
+)
+
+DROP TABLE Product
+
+--CREATE TABLE Price
+--(
+--    PriceId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+--    ProductId INT,
+--    Price SMALLMONEY
+--)
+
+CREATE TABLE Customer
+(
+    CustomerId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    FirstName NVARCHAR(50),
+    LastName NVARCHAR(50),
+    Address NVARCHAR(50)
+)
+
+CREATE TABLE Warehouse
+(
+    WarehouseId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    CategoryId INT foreign key REFERENCES Category(CategoryId),
+    ProductId INT foreign key REFERENCES Product(ProductId),
+    PriceId INT foreign key REFERENCES Product(ProductId),
+    Quantity INT,
+    DateOfEntryToWarehouse DATETIME NOT NULL
+)
+-------------------------------------------------------------------------------------------------
+--CLEANUP
+DROP TABLE Category, Product, Manufacturer, Price, Warehouse, Customer
+DROP TABLE Warehouse
+
+SELECT
+*
+FROM Manufacturer, Product, Category, Price, Customer
+
+SELECT
+*
+FROM Warehouse
+-- Podstawowe informacje o bazie:
+SELECT
+*
+FROM INFORMATION_SCHEMA.TABLES;
+
+-- Ile jest wszystkich rowerów w magazynie
+SELECT
+    SUM(Quantity) AS [Wszystkich rowerow w magazynie]
+FROM Warehouse
+
+-- Ile rowerów jest w danej kategorii
+
+SELECT
+     SUM(Quantity) AS 'Ilość rowerow w magazynie danej kategorii'
+    ,c.CategoryName
+FROM Warehouse w
+INNER JOIN Category c ON w.CategoryId = c.CategoryId
+--WHERE c.CategoryName = 'MTB/Górskie'
+GROUP BY c.CategoryName
+HAVING MIN(Quantity) >2
+ORDER BY 1 DESC
+
+UPDATE Product SET ProductName = 'ALEZLYROWER' WHERE ProductName = 'ALLTOUR'
+
+SELECT
+*
+FROM Product
+
+INSERT INTO Product VALUES
+('4','3','BESTBIKE','10000')
+
+--Wybierz z magazynu posumowane ilości rowery danej kategorii,
+--weź nazwę kategorii i wyświetlą ja w odpowiedzi z tabelii kategorie
+--(łączenie join'em po kluczu kategriaId
+--Zawęź kategorie tylko MTB
+--Pogrupuj po Nazwie kategroii
+--Wyswietl tylko te rekordy ktore maja wiecej niz 2 sztuki na magazynie
+--Posortuje jest od najwieszej ilosci do namniejszej
+------------------------------------------------------------
+SELECT
+     w.Quantity
+    ,c.CategoryName
+    ,m.ManufacturerName
+    ,p.Price
+FROM Warehouse w
+INNER JOIN Category c ON c.CategoryId = w.CategoryId
+INNER JOIN Manufacturer m ON m.ManufacturerId = w.CategoryId
+INNER JOIN Product p ON p.ProductId = w.ProductId
+ORDER BY Price DESC
+
+
+-- Ilość rowerow w magazynie
+SELECT COUNT(ProductId) AS 'Ilość rowerow w magazynie'  FROM Warehouse
+
+SELECT
+     w.Quantity
+    ,c.CategoryName
+    ,m.ManufacturerName
+    ,p.Price
+    ,DateOfEntryToWarehouse
+FROM Warehouse w
+INNER JOIN Category c ON c.CategoryId = w.CategoryId
+INNER JOIN Manufacturer m ON m.ManufacturerId = w.CategoryId
+INNER JOIN Product p ON p.ProductId = w.ProductId
+ORDER BY DateOfEntryToWarehouse ASC
+
+SELECT TOP 3
+*
+FROM Warehouse
+WHERE Quantity >= 3
+ORDER BY DateOfEntryToWarehouse ASC
+
+
+
+
+SELECT
+*
+FROM Product
+
+-- INNER and LEFT INNER JOIN
+SELECT
+     p.ProductName
+    ,c.CategoryName
+    ,m.ManufacturerName
+    ,p.Price
+FROM Product p
+INNER JOIN Category c ON c.CategoryId = p.CategoryId
+INNER JOIN Manufacturer m ON m.ManufacturerId = p.CategoryId
+WHERE c.CategoryName = 'MTB/Górskie' AND p.Price > 1000.50
+ORDER BY p.Price DESC
+
+--GROUP BY p.ProductSubcategoryID
+-- Ile rowerów jest w danej kategorii
+SELECT
+    COUNT(ProductName) AS 'No of products in category'
+    ,c.CategoryName
+    ,p.ProductName
+FROM Product p
+INNER JOIN Category c ON c.CategoryId = p.CategoryId
+GROUP BY
+     c.CategoryName
+    ,p.ProductName
+ORDER BY COUNT(ProductName) ASC;
+
+SELECT COUNT(CategoryName) AS 'Ilość kategorii'  FROM Category
+
+SELECT AVG(Quantity) AS [Śr. ilość rowerów w magazynie] FROM Warehouse
+
+SELECT
+      AVG(Price) AS [Price average]
+    , MIN(Price) AS [Price min]
+    , MAX(Price) AS [Price max]
+    , SUM(Price) AS [Price sum]
+FROM Product
+
+
+SELECT
+*
+FROM Warehouse
+
+SELECT
+    [date]
+FROM Warehouse
+ORDER BY DateOfEntryToWarehouse ASC
+
+SELECT
+*
+FROM Product
+WHERE ProductId = 4
+
+-------------------------------------------------------------------------------------------------
+------Title: Tworzenie bazy danych Jango:
+
+CREATE DATABASE Jango
+DROP TABLE Category
+
+USE Jango
+GO
+
+
+CREATE TABLE Product
+(
+    ProductId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    ProductName VARCHAR(50),
+)
+
+SELECT
+*
+FROM
+Product
+
+
+INSERT INTO Product VALUES
+('JW-KLC1'),
+('JW-KLC2'),
+('JF-KLK2'),
+('JW-KLC4'),
+('JA-M5L'),
+('JA-M6L'),
+('JA-S06B10P'),
+('JA-S06B12P'),
+('JA-S06C12P'),
+('JA-S06C38P'),
+('JA-S06J1P'),
+('JA-S10B10P'),
+('JA-S10B12P'),
+('JA-S10B16P'),
+('JA-S10C12P'),
+('JA-S10C38P'),
+('JA-S10J1P'),
+('JA-S10J2P'),
+('JA-S10J33P'),
+('JA-S13B12P'),
+('JA-S13B16P'),
+('JA-S13C12P'),
+('JA-S13C38P'),
+('JA-S13J2P'),
+('JA-S13J33P'),
+('JA-S13J6P'),
+('JA-S16B16P'),
+('JA-S16B18P'),
+('JA-S16B18*'),
+('JA-S16J33P'),
+('JA-S16J6P'),
+('JA-S16J3P'),
+('JA-S20B22P'),
+('JA-S06B18ZP'),
+('JA-S06MK1P'),
+('JA-S10B18ZP'),
+('JA-S10MK1P'),
+('JA-S10MK2P'),
+('JA-S13B24ZP'),
+('JA-S13MK2P'),
+('JA-S13MK3P'),
+('JA-S16B24ZP'),
+('JA-S16MK2P'),
+('JA-S16MK3P'),
+('JA-S20MK2P'),
+('JA-S20MK3P'),
+('JA-S06B10'),
+('JA-S06B12'),
+('JA-S06C12'),
+('JA-S06C38'),
+('JA-S06J1'),
+('JA-S08B10'),
+('JA-S08B12'),
+('JA-S08B16'),
+('JA-S08C12'),
+('JA-S08C38'),
+('JA-S08J1'),
+('JA-S10B10'),
+('JA-S10B12'),
+('JA-S10B16'),
+('JA-S10C12'),
+('JA-S10C38'),
+('JA-S10J1'),
+('JA-S10J2'),
+('JA-S10J33'),
+('JA-S13B12'),
+('JA-S13B16'),
+('JA-S13C12'),
+('JA-S13C38'),
+('JA-S13J2'),
+('JA-S13J33'),
+('JA-S13J6'),
+('JA-S16B16'),
+('JA-S16B18'),
+('JA- S16B18*'),
+('JA-S16C12'),
+('JA-S16C58'),
+('JA-S16J33'),
+('JA-S16J6'),
+('JA-S16J3'),
+('JA-S20B22'),
+('JA-S13B16L'),
+('JA-S13C12L'),
+('JA-S06MK1'),
+('JA-S10MK1'),
+('JA-S10MK2'),
+('JA-S13MK1'),
+('JA-S13MK2'),
+('JA-S16MK2'),
+('JA-S06B10W'),
+('JA-S10B12W'),
+('JA-S13B12W'),
+('JA-S13B16W'),
+('JA-S16B16W'),
+('JA-S16B18W'),
+('JW-S10B12'),
+('JW-S10B16'),
+('JW-S10C12'),
+('JW-S10C38'),
+('JW-S13B12'),
+('JW-S13B16'),
+('JW-S13C12'),
+('JW-S16B16'),
+('JW-S16B18'),
+('JW-S16C12'),
+('JW-S16C58'),
+('JF-B10C12L'),
+('JF-B10C38L'),
+('JF-B13C12L'),
+('JF-B13C38L'),
+('JW-B10C12'),
+('JW-B10C38'),
+('JW-B13C12'),
+('JW-B13C38'),
+('JF-K06B10'),
+('JF-K10B12'),
+('JF-K10C12'),
+('JF-K10C38'),
+('JF-K13B16'),
+('JF-K13C12'),
+('JF-K13C38'),
+('JF-K16B16'),
+('JF-K16B18'),
+('JF-K16C12'),
+('JF-K16C58'),
+('JF-K20B22');
+
+SELECT
+*
+FROM
+Product
+
+-- , Level of Category
+CREATE TABLE Category
+(
+     CategoryNode HIERARCHYID PRIMARY KEY CLUSTERED,
+    LevelOfCategory AS CategoryNode.GetLevel(),
+    CategoryId INT UNIQUE NOT NULL,
+    CategoryName VARCHAR(50) NOT NULL
+);
+
+-- index breadth first
+CREATE UNIQUE INDEX CategoryLvl
+ON Category (LevelOfCategory, CategoryNode)
+GO
+
+--CLEANUP
+DROP TABLE Category, Product, Price, Warehouse, Customer
+DROP TABLE Category
+
+INSERT INTO Category VALUES
+('CategoryUCHWYT/WIERTARSKIE'),
+('        CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE'),
+(' CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/SAMOZACISKOWE'),
+(' CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/SAMOZACISKOWE/PRECYZYJNE'),
+(' CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/SAMOZACISKOWE/STANDARTOWE'),
+(' CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/SAMOZACISKOWE/STANDARTOWE/WZMOCNIONE'),
+(' CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/SAMOZACISKOWE/STANDARTOWE/POPULARNE'),
+('            CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/W OBUDOWIE PLASTYKOWEJ'),
+('                CategoryUCHWYT/WIERTARSKIE/BEZKLUCZOWE/W OBUDOWIE PLASTYKOWEJ/POPULARNE'),
+('                    '),
+('        CategoryUCHWYTY/WIERTARSKIE/KLUCZOWE'),
+('            CategoryUCHWYT/WIERTARSKIE/KLUCZOWE/STANDARTOWE'),
+('            CategoryUCHWYT/WIERTARSKIE/KLUCZOWE/POPULARNE'),
+('        CategoryUCHWYT/TOKARSKIE'),
+('            CategoryUCHWYT/TOKARSKIE/TROJSZCZEKOWE'),
+('    CategoryUCHWYTY/NARZEDZIOWE'),
+('        CategoryUCHWYTY/NARZEDZIOWE/Z SAMOBLOKUJACYM  MOCOWANIEM NARZEDZIA'),
+('            CategoryUCHWYTY/NARZEDZIOWE/Z SAMOBLOKUJACYM MOCOWANIEM NARZEDZIA/PRECYZYJNY'),
+('        '),
+('CategoryTRZPIENIE'),
+('    CategoryTRZPIENIE/WIERTARSKIE'),
+('             '),
+('CategoryNARZEDZIA'),
+('    CategoryNARZEDZIA/DO WYKONYWANIA  RADELKOWANIA'),
+('        '),
+('CategoryAKCESORIA'),
+('    CategoryAKCESORIA/KLUCZ'),
+('    CategoryAKCESORIA/SRUBA');
+
